@@ -1,0 +1,19 @@
+{
+  "name":"DavidJDM/ifinal-blog",
+  "authors": [
+    {
+      "name": "Brandon Skar",
+      "email": "bransk01@yahoo.com"
+    },
+    {
+      "name": "David Kovalevich",
+      "email": "unknown@unknown.com"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  },
+  "autoload": {
+    "classmap": ["classes/"]
+  }
+}
