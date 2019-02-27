@@ -50,4 +50,12 @@ $f3->route('GET|POST /contact', function($f3) {
     echo $template->render('views/events.html');
 });
 
+// Route to events page
+$f3->route('GET|POST /life-style', function($f3) {
+    $f3->set('title', 'Yummy Blog - Food Blog Template');
+
+    $template = new Template();
+    echo $template->render('views/life-style.html');
+});
+
 $f3->run();
