@@ -47,7 +47,7 @@ $f3->route('GET|POST /contact', function($f3) {
     $f3->set('title', 'Yummy Blog - Food Blog Template');
 
     $template = new Template();
-    echo $template->render('views/events.html');
+    echo $template->render('views/contact.html');
 });
 
 // Route to events page
