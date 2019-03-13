@@ -590,3 +590,14 @@ label.valid {
     margin-bottom: 10px; } }
 
 /*# sourceMappingURL=style.css.map */
+
+
+#sign-in-image {
+  box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+}
+
+#register-image {
+  box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+}
