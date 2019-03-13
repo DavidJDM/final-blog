@@ -70,4 +70,20 @@ $f3->route('GET|POST /life-style', function($f3) {
     echo $template->render('views/life-style.html');
 });
 
+// Route to register page
+$f3->route('GET|POST /register', function($f3) {
+    $f3->set('title', 'Yummy Blog - Food Blog Template');
+
+    $template = new Template();
+    echo $template->render('views/register.html');
+});
+
+// Route to sign in page
+$f3->route('GET|POST /sign-in', function($f3) {
+    $f3->set('title', 'Yummy Blog - Food Blog Template');
+
+    $template = new Template();
+    echo $template->render('views/sign-in.html');
+});
+
 $f3->run();
