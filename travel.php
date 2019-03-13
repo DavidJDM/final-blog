@@ -2,7 +2,8 @@
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
 
-    require '/home/dkovalevich/db.php';
+    require '/home/dkovalevich/config.php';
+    $cnxn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
 
 
 ?>
@@ -167,7 +168,7 @@
 
 <?php
 
-            $posts = "SELECT * FROM blog_posts WHERE post_category = 1;";
+            $posts = "SELECT * FROM posts WHERE post_category = 1;";
             //Send the query to DB
             $result = @mysqli_query($cnxn, $posts);
             $rows_returned = mysqli_num_rows($result);
@@ -181,14 +182,15 @@ echo("
                 while ($row = mysqli_fetch_assoc($result)) {
 
                     $post_id = $row['post_id'];
-                    $post_category = $row['post_category'];
-                    $post_title = $row['post_title'];
-                    $content = $row['content'];
-                    $author_name = $row['author_name'];
-                    $post_date = $row['post_date'];
+                    $post_category = $row['category_id'];
+                    $post_title = $row['title'];
+                    $content = $row['body'];
                     $image = $row['image'];
-                    $comments = $row['comments'];
-                    $hearts = $row['hearts'];
+                    $author_name = $row['author'];
+                    $comments = $row['num_likes'];
+                    $hearts = $row['num_comments'];
+                    $users_liked = $row['users_liked'];
+                    $post_date = $row['date'];
 
                     $month = date('Y', strtotime($post_date));
                     $day = date('Y', strtotime($post_date));
