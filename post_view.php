@@ -167,6 +167,11 @@ $post_title = "This is post number 1";
                         <div class="single-post">
                             <!-- Post Thumb -->
                             <div class="post-thumb">
+                                <p>
+                                    laskdjf;lsdkjf;lasdkjfas;dlkfjasd;lkfjasd;lkf
+                                    <img src="img/blog-img/10.jpg">
+                                    a;lsdkfjas;dlkfjasd;lkfjasd;lkfjsad;lkfjasd;lfkjsd
+                                </p>
                                 <img src="img/blog-img/10.jpg" alt="">
                             </div>
                             <!-- Post Content -->
