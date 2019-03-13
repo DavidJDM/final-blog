@@ -50,13 +50,12 @@ class Database
         $post->setCategoryID($results['category_id']);
         $post->setImage($results['image']);
         $post->setLikes($results['likes']);
-        $post->setDate($results['date']);
-        $post->setDate($results['date']);
-        $post->setDate($results['date']);
-        $post->setDate($results['date']);
-        $post->setDate($results['date']);
+        $post->setNumComments($results['num_comments']);
+        $post->setNumLikes($results['num_likes']);
+        $post->setTitle($results['title']);
+        $post->setLikes($results['users_liked']);
 
-        return $results;
+        return $post;
     }
 
     public function getInfo()
