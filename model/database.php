@@ -24,12 +24,12 @@ class Database
         }
     }
 
-    public function insert($id)
+    public function getTravelInfo($id)
     {
         global $dbh;
 
-        $sql = "INSERT INTO test (id)
-                VALUES(:id)";
+        $sql = "SELECT * FROM post 
+                WHERE category_id = ':id' LIMIT 25";
 
         $statement = $dbh->prepare($sql);
 
@@ -41,6 +41,22 @@ class Database
         if(isset($arr[2])) {
             print_r($arr[2]);
         }
+
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        $post = new Post();
+        $post->setAuthor($results['author']);
+        $post->setBody($results['body']);
+        $post->setCategoryID($results['category_id']);
+        $post->setImage($results['image']);
+        $post->setLikes($results['likes']);
+        $post->setDate($results['date']);
+        $post->setDate($results['date']);
+        $post->setDate($results['date']);
+        $post->setDate($results['date']);
+        $post->setDate($results['date']);
+
+        return $results;
     }
 
     public function getInfo()
