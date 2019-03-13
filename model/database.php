@@ -24,7 +24,7 @@ class Database
         }
     }
 
-    public function getTravelInfo($id)
+    public function getInfo($id)
     {
         global $dbh;
 
@@ -56,24 +56,5 @@ class Database
         $post->setLikes($results['users_liked']);
 
         return $post;
-    }
-
-    public function getInfo()
-    {
-        global $dbh;
-
-        $sql = "SELECT * FROM test";
-
-        $statement = $dbh->prepare($sql);
-
-        //execute and check for errors
-        $statement->execute();
-        $arr = $statement->errorInfo();
-        if(isset($arr[2])) {
-            print_r($arr[2]);
-        }
-
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-        return $result;
     }
 }
