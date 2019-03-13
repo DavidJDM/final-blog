@@ -26,20 +26,24 @@ $f3->route('GET /', function($f3) {
     echo $template->render('views/home.html');
 });
 
-// Route to travel page
-$f3->route('GET /travel', function($f3) {
-    $f3->set('title', 'Milana\'s Blog | Home');
-
-    $template = new Template();
-    echo $template->render('travel.php');
-});
-
 // Route to home page
 $f3->route('GET|POST /home', function($f3) {
     $f3->set('title', 'Milana\'s Blog | Home');
 
     $template = new Template();
     echo $template->render('views/home.html');
+});
+
+// Route to travel page
+$f3->route('GET /travel', function($f3) {
+    $f3->set('title', 'Milana\'s Blog | Travel');
+
+    $db = new Database();
+    $db->connect();
+    $db->getInfo(1);
+
+    $template = new Template();
+    echo $template->render('travel.php');
 });
 
 // Route to events page
