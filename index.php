@@ -18,6 +18,9 @@ $f3 = Base::instance();
 //Turn of fat free error reporting
 $f3->set('DEBUG', 3);
 
+//file for validation
+include('model/register-validation.php');
+
 // Default Route
 $f3->route('GET /', function($f3) {
     $f3->set('title', 'Milana\'s Blog | Home');
@@ -41,7 +44,7 @@ $f3->route('GET /travel', function($f3) {
     //connect to database and get 12 most recent travel posts
     $db = new Database();
     $db->connect();
-    $results = $db->getInfo(1);
+    $results = $db->getPostInfo(1);
     $f3->set('results', $results);
 
     $template = new Template();
@@ -55,7 +58,7 @@ $f3->route('GET|POST /events', function($f3) {
     //connect to database and get 12 most recent events posts
     $db = new Database();
     $db->connect();
-    $results = $db->getInfo(2);
+    $results = $db->getPostInfo(2);
     $f3->set('results', $results);
 
     $template = new Template();
@@ -72,7 +75,13 @@ $f3->route('GET|POST /contact', function($f3) {
 
 // Route to events page
 $f3->route('GET|POST /life-style', function($f3) {
-    $f3->set('title', 'Yummy Blog - Food Blog Template');
+    $f3->set('title', 'Milana\'s Blog | Life-Style');
+
+    //connect to database and get 12 most recent list-style posts
+    $db = new Database();
+    $db->connect();
+    $results = $db->getPostInfo(3);
+    $f3->set('results', $results);
 
     $template = new Template();
     echo $template->render('views/life-style.html');
@@ -81,6 +90,17 @@ $f3->route('GET|POST /life-style', function($f3) {
 // Route to register page
 $f3->route('GET|POST /register', function($f3) {
     $f3->set('title', 'Yummy Blog - Food Blog Template');
+
+    if(isset($_POST['signup'])) {
+        //get POST information
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $pass = $_POST['pass'];
+        $re_pass = $_POST['re_pass'];
+
+        $validEmail = validateEmail($email);
+        $f3->set('validEmail', $validEmail);
+    }
 
     $template = new Template();
     echo $template->render('views/register.html');

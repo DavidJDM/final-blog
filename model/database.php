@@ -27,10 +27,10 @@ class Database
     }
 
     /**
-     * @param $id Category ID used to get information from database (travel => 1, events => 2, life-style => 3)
-     * @return Post returns a post object array with top 25 posts sorted by date
+     * @param $id param ID used to get information from database (travel => 1, events => 2, life-style => 3)
+     * @return array returns a post object array with top 25 posts sorted by date
      */
-    public function getInfo($id)
+    public function getPostInfo($id)
     {
         global $dbh;
 
@@ -52,17 +52,33 @@ class Database
 
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-        /*$post = new Post();
-        $post->setAuthor($results['author']);
-        $post->setBody($results['body']);
-        $post->setCategoryID($results['category_id']);
-        $post->setImage($results['image']);
-        $post->setLikes($results['likes']);
-        $post->setNumComments($results['num_comments']);
-        $post->setNumLikes($results['num_likes']);
-        $post->setTitle($results['title']);
-        $post->setLikes($results['users_liked']);*/
-
         return $results;
+    }
+
+    /**
+     * @param $email the email from the user to check the database for availability
+     * @return bool returns true if there are no emails matching the email
+     * given by the user in the database
+     */
+    public function isEmailAvailable($email)
+    {
+        global $dbh;
+
+        $sql = "SELECT * FROM users
+                WHERE email = :email";
+
+        $statement = $dbh->prepare($sql);
+
+        //bind all the parameters
+        $statement->bindValue(':email', $email, PDO::PARAM_INT);
+
+        $statement->execute();
+        $arr = $statement->errorInfo();
+        if(isset($arr[2])) {
+            print_r($arr[2]);
+        }
+
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return sizeof($results) == 0;
     }
 }
