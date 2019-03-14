@@ -672,7 +672,7 @@ li {
 
 .post-favourite a,
 .post-comments a {
-    margin-right: 15px;
+    margin-right: 10px;
 }
 
 .post-author a {
@@ -1508,4 +1508,14 @@ li {
 
 .active {
     color: #fc6c3f !important;
+}
+
+i.fas.fa-heart {
+    color: white;
+    -webkit-text-stroke: 1px #b5aec4;
+}
+
+i.fas.fa-comment {
+    color: white;
+    -webkit-text-stroke: 1px #b5aec4;
 }

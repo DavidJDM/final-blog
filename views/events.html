@@ -20,6 +20,9 @@
     <!-- Responsive CSS -->
     <link href="css/responsive/responsive.css" rel="stylesheet">
 
+    <!-- Font Awesome Latest -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -92,11 +95,11 @@
                                 <div class="post-comment-share-area d-flex">
                                     <!-- Post Favourite -->
                                     <div class="post-favourite">
-                                        <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> {{ @result['num_likes'] }}</a>
+                                        <a href="#"><i class="fas fa-heart"></i> {{ @result['num_likes'] }}</a>
                                     </div>
                                     <!-- Post Comments -->
                                     <div class="post-comments">
-                                        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> {{ @result['num_comments'] }}</a>
+                                        <a href="#"><i class="fas fa-comment"></i> {{ @result['num_comments'] }}</a>
                                     </div>
                                     <!-- Post Share -->
                                     <div class="post-share">
