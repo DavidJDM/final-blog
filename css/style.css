@@ -209,6 +209,11 @@ body {
   width: 900px;
 }
 
+#sign-in-content {
+  background: #fff;
+  width: 900px;
+}
+
 .display-flex {
   justify-content: space-between;
   -moz-justify-content: space-between;
