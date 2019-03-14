@@ -38,7 +38,7 @@ $f3->route('GET|POST /home', function($f3) {
 $f3->route('GET /travel', function($f3) {
     $f3->set('title', 'Milana\'s Blog | Travel');
 
-    //connect to database and get 25 most recent travel posts
+    //connect to database and get 12 most recent travel posts
     $db = new Database();
     $db->connect();
     $results = $db->getInfo(1);
@@ -50,7 +50,13 @@ $f3->route('GET /travel', function($f3) {
 
 // Route to events page
 $f3->route('GET|POST /events', function($f3) {
-    $f3->set('title', 'Yummy Blog - Food Blog Template');
+    $f3->set('title', 'Milana\'s Blog | Events');
+
+    //connect to database and get 12 most recent events posts
+    $db = new Database();
+    $db->connect();
+    $results = $db->getInfo(2);
+    $f3->set('results', $results);
 
     $template = new Template();
     echo $template->render('views/events.html');
