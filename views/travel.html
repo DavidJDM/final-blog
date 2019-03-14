@@ -67,7 +67,7 @@
 
             <!-- Loop for posts from database -->
             <repeat group="{{ @results }}" value="{{ @result}}" counter="{{ @i }}">
-                <div class="col-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4" id="{{ @result['post_id'] }}">
                     <div class="single-post wow fadeInUp" data-wow-delay="{{ @i/10 }}s">
                         <!-- Post Thumb -->
                         <div class="post-thumb">
@@ -284,6 +284,8 @@
 <script src="js/others/plugins.js"></script>
 <!-- Active JS -->
 <script src="js/active.js"></script>
+<!-- Like button -->
+<script src="js/likeButton.js"></script>
 
 <script>
     $(".navbar-nav li:nth-child(2)").addClass("active");
