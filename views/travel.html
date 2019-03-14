@@ -29,8 +29,6 @@
     <div class="yummy-load"></div>
 </div>
 
-<body>
-
 <!--Top Header-->
 <include href="include/top-header.html" />
 
@@ -55,7 +53,7 @@
             <div class="col-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.php"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                        <li class="breadcrumb-item"><a href="home"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Travel</li>
                     </ol>
                 </nav>
@@ -65,5 +63,210 @@
 </div>
 <!-- ****** Breadcumb Area End ****** -->
 
+<!-- ****** Archive Area Start ****** -->
+<section class="archive-area section_padding_80">
+    <div class="container">
+        <div class="row">
+
+            <!-- Single Post -->
+            <repeat group="{{ @results }}" value="{{ @result}}" counter="{{ @i }}">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-post wow fadeInUp" data-wow-delay="{{ @i/10 }}s">
+                        <!-- Post Thumb -->
+                        <div class="post-thumb">
+                            <img src="{{ @result['image'] }}" alt="">
+                        </div>
+                        <!-- Post Content -->
+                        <div class="post-content">
+                            <div class="post-meta d-flex">
+                                <div class="post-author-date-area d-flex">
+                                    <!-- Post Author -->
+                                    <div class="post-author">
+                                        <a href="#">By {{ @result['author'] }}</a>
+                                    </div>
+                                    <!-- Post Date -->
+                                    <div class="post-date">
+                                        <a href="#">{{ @result['date'] }}</a>
+                                    </div>
+                                </div>
+                                <!-- Post Comment & Share Area -->
+                                <div class="post-comment-share-area d-flex">
+                                    <!-- Post Favourite -->
+                                    <div class="post-favourite">
+                                        <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> {{ @result['num_likes'] }}</a>
+                                    </div>
+                                    <!-- Post Comments -->
+                                    <div class="post-comments">
+                                        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> {{ @result['num_comments'] }}</a>
+                                    </div>
+                                    <!-- Post Share -->
+                                    <div class="post-share">
+                                        <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#">
+                                <h4 class="post-headline">{{ @result['title'] }}</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </repeat>
+
+        </div>
+    </div>
+</section>
+
+<!-- ****** Instagram Area Start ****** -->
+<div class="instargram_area owl-carousel section_padding_100_0 clearfix" id="portfolio">
+
+    <!-- Instagram Item -->
+    <div class="instagram_gallery_item">
+        <!-- Instagram Thumb -->
+        <img src="img/instagram-img/1.jpg" alt="">
+        <!-- Hover -->
+        <div class="hover_overlay">
+            <div class="yummy-table">
+                <div class="yummy-table-cell">
+                    <div class="follow-me text-center">
+                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instagram Item -->
+    <div class="instagram_gallery_item">
+        <!-- Instagram Thumb -->
+        <img src="img/instagram-img/2.jpg" alt="">
+        <!-- Hover -->
+        <div class="hover_overlay">
+            <div class="yummy-table">
+                <div class="yummy-table-cell">
+                    <div class="follow-me text-center">
+                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instagram Item -->
+    <div class="instagram_gallery_item">
+        <!-- Instagram Thumb -->
+        <img src="img/instagram-img/3.jpg" alt="">
+        <!-- Hover -->
+        <div class="hover_overlay">
+            <div class="yummy-table">
+                <div class="yummy-table-cell">
+                    <div class="follow-me text-center">
+                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instagram Item -->
+    <div class="instagram_gallery_item">
+        <!-- Instagram Thumb -->
+        <img src="img/instagram-img/4.jpg" alt="">
+        <!-- Hover -->
+        <div class="hover_overlay">
+            <div class="yummy-table">
+                <div class="yummy-table-cell">
+                    <div class="follow-me text-center">
+                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instagram Item -->
+    <div class="instagram_gallery_item">
+        <!-- Instagram Thumb -->
+        <img src="img/instagram-img/5.jpg" alt="">
+        <!-- Hover -->
+        <div class="hover_overlay">
+            <div class="yummy-table">
+                <div class="yummy-table-cell">
+                    <div class="follow-me text-center">
+                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instagram Item -->
+    <div class="instagram_gallery_item">
+        <!-- Instagram Thumb -->
+        <img src="img/instagram-img/6.jpg" alt="">
+        <!-- Hover -->
+        <div class="hover_overlay">
+            <div class="yummy-table">
+                <div class="yummy-table-cell">
+                    <div class="follow-me text-center">
+                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instagram Item -->
+    <div class="instagram_gallery_item">
+        <!-- Instagram Thumb -->
+        <img src="img/instagram-img/1.jpg" alt="">
+        <!-- Hover -->
+        <div class="hover_overlay">
+            <div class="yummy-table">
+                <div class="yummy-table-cell">
+                    <div class="follow-me text-center">
+                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instagram Item -->
+    <div class="instagram_gallery_item">
+        <!-- Instagram Thumb -->
+        <img src="img/instagram-img/2.jpg" alt="">
+        <!-- Hover -->
+        <div class="hover_overlay">
+            <div class="yummy-table">
+                <div class="yummy-table-cell">
+                    <div class="follow-me text-center">
+                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- ****** Our Creative Portfolio Area End ****** -->
+
+<!-- ****** Footer Menu Area ****** -->
+<include href="include/footer-menu.html" />
+
+<!-- Jquery-2.2.4 js -->
+<script src="js/jquery/jquery-2.2.4.min.js"></script>
+<!-- Popper js -->
+<script src="js/bootstrap/popper.min.js"></script>
+<!-- Bootstrap-4 js -->
+<script src="js/bootstrap/bootstrap.min.js"></script>
+<!-- All Plugins JS -->
+<script src="js/others/plugins.js"></script>
+<!-- Active JS -->
+<script src="js/active.js"></script>
+
+<script>
+    $(".navbar-nav li:nth-child(2)").addClass("active");
+</script>
 </body>
 </html>

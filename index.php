@@ -38,12 +38,14 @@ $f3->route('GET|POST /home', function($f3) {
 $f3->route('GET /travel', function($f3) {
     $f3->set('title', 'Milana\'s Blog | Travel');
 
+    //connect to database and get 25 most recent travel posts
     $db = new Database();
     $db->connect();
-    $db->getInfo(1);
+    $results = $db->getInfo(1);
+    $f3->set('results', $results);
 
     $template = new Template();
-    echo $template->render('travel.php');
+    echo $template->render('views/travel.html');
 });
 
 // Route to events page
