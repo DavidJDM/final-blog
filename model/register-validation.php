@@ -20,5 +20,5 @@ function validateEmail($email)
 
 function validatePassword($pass, $re_pass)
 {
-    return $pass === $re_pass;
+    return $pass === $re_pass && !empty($pass);
 }

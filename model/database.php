@@ -42,7 +42,7 @@ class Database
         $statement = $dbh->prepare($sql);
 
         //bind all the parameters
-        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->bindValue(':id', $id, PDO::PARAM_STR);
 
         $statement->execute();
         $arr = $statement->errorInfo();
@@ -70,7 +70,7 @@ class Database
         $statement = $dbh->prepare($sql);
 
         //bind all the parameters
-        $statement->bindValue(':email', $email, PDO::PARAM_INT);
+        $statement->bindValue(':email', $email, PDO::PARAM_STR);
 
         $statement->execute();
         $arr = $statement->errorInfo();
@@ -80,5 +80,28 @@ class Database
 
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
         return sizeof($results) == 0;
+    }
+
+    public function createUser($first, $last, $email, $pass)
+    {
+        global $dbh;
+
+        $sql = "INSERT INTO users(first, last, email, password)
+                VALUES(:first, :last, :email, :password)";
+
+        $statement = $dbh->prepare($sql);
+
+        //bind all the parameters
+        $statement->bindValue(':first', $first, PDO::PARAM_STR);
+        $statement->bindValue(':last', $last, PDO::PARAM_STR);
+        $statement->bindValue(':email', $email, PDO::PARAM_STR);
+        $statement->bindValue(':password', SHA1($pass), PDO::PARAM_STR);
+
+
+        $statement->execute();
+        $arr = $statement->errorInfo();
+        if(isset($arr[2])) {
+            print_r($arr[2]);
+        }
     }
 }

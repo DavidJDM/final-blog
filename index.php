@@ -99,7 +99,15 @@ $f3->route('GET|POST /register', function($f3) {
         $re_pass = $_POST['re_pass'];
 
         $validEmail = validateEmail($email);
+        $validPass = validatePassword($pass, $re_pass);
         $f3->set('validEmail', $validEmail);
+        $f3->set('validPass', $validPass);
+        if($validEmail && $validPass) {
+            $db = new Database();
+            $db->connect();
+            $db->createUser($name, "", $email, $pass);
+            $f3->reroute('home');
+        }
     }
 
     $template = new Template();
