@@ -82,18 +82,18 @@ class Database
         return sizeof($results) == 0;
     }
 
-    public function createUser($first, $last, $email, $pass)
+    public function createUser($name, $email, $pass)
     {
         global $dbh;
 
-        $sql = "INSERT INTO users(first, last, email, password)
-                VALUES(:first, :last, :email, :password)";
+        $email = strtolower($email);
+        $sql = "INSERT INTO users(fullname, email, password)
+                VALUES(:fullname, :email, :password)";
 
         $statement = $dbh->prepare($sql);
 
         //bind all the parameters
-        $statement->bindValue(':first', $first, PDO::PARAM_STR);
-        $statement->bindValue(':last', $last, PDO::PARAM_STR);
+        $statement->bindValue(':fullname', $name, PDO::PARAM_STR);
         $statement->bindValue(':email', $email, PDO::PARAM_STR);
         $statement->bindValue(':password', SHA1($pass), PDO::PARAM_STR);
 
@@ -103,5 +103,36 @@ class Database
         if(isset($arr[2])) {
             print_r($arr[2]);
         }
+    }
+
+    public function checkSignin($email, $pass)
+    {
+        global $dbh;
+
+        $sql = "SELECT fullname, email, password FROM users
+                WHERE email = :email AND password = :password";
+
+        $statement = $dbh->prepare($sql);
+
+        //bind all the parameters
+        $statement->bindValue(':email', $email, PDO::PARAM_STR);
+        $statement->bindValue(':password', SHA1($pass), PDO::PARAM_STR);
+
+
+        $statement->execute();
+        $arr = $statement->errorInfo();
+        if(isset($arr[2])) {
+            print_r($arr[2]);
+        }
+
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        if(sizeof($results) == 1) {
+            $user = new User();
+            $user->setEmail($results['email']);
+            $user->setName($results['fullname']);
+            return $user;
+        }
+        return false;
     }
 }

@@ -12,6 +12,7 @@
  */
 function validateEmail($email)
 {
+    $email = strtolower($email);
     $db = new Database();
     $db->connect();
     $emailAvailable = $db->isEmailAvailable($email);

@@ -105,7 +105,7 @@ $f3->route('GET|POST /register', function($f3) {
         if($validEmail && $validPass) {
             $db = new Database();
             $db->connect();
-            $db->createUser($name, "", $email, $pass);
+            $db->createUser($name, $email, $pass);
             $f3->reroute('home');
         }
     }
@@ -116,7 +116,21 @@ $f3->route('GET|POST /register', function($f3) {
 
 // Route to sign in page
 $f3->route('GET|POST /sign-in', function($f3) {
-    $f3->set('title', 'Yummy Blog - Food Blog Template');
+    $f3->set('title', 'Milana\'s Blog | Sign-in');
+
+    if(isset($_POST['signin'])) {
+        //get POST information
+        $email = $_POST['your_email'];
+        $pass = $_POST['your_pass'];
+
+        $db = new Database();
+        $db->connect();
+
+        $user = $db->checkSignin($email, $pass);
+        if($user !== false) {
+            $f3->reroute('home');
+        }
+    }
 
     $template = new Template();
     echo $template->render('views/sign-in.html');
