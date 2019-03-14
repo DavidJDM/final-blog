@@ -16,7 +16,7 @@ class Database
      */
     public function connect()
     {
-        require_once('/home/bskargre/final-config.php');
+        require_once('/home/dkovalev/final-config.php');
 
         try {
             //instantiate a database object

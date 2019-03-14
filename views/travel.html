@@ -92,7 +92,7 @@
                                 <div class="post-comment-share-area d-flex">
                                     <!-- Post Favourite -->
                                     <div class="post-favourite">
-                                        <a href="#"><i class="fas fa-heart"></i> {{ @result['num_likes'] }}</a>
+                                        <a href="#"><i class="fas fa-heart notliked"></i> <span id="post-{{@result['post_id']}}-numOfLikes">{{ @result['num_likes'] }}</span></a>
                                     </div>
                                     <!-- Post Comments -->
                                     <div class="post-comments">
@@ -291,6 +291,37 @@
 
 <script>
     $(".navbar-nav li:nth-child(2)").addClass("active");
+
+    $("i.fas.fa-heart").click(function(){
+
+        if($(this).hasClass("notliked"))
+        {
+            var heartNum = $(this).parent().text();
+            heartNum = parseInt(heartNum) + 1;
+
+            $(this).next("span").text(heartNum);
+
+            $(this).css("color", "#e30000");
+            $(this).css("-webkit-text-stroke", "1px #e30000");
+
+            $(this).removeClass("notliked");
+            $(this).addClass("liked");
+        }
+
+        else if($(this).hasClass("liked"))
+        {
+            var heartNum = $(this).parent().text();
+            heartNum = parseInt(heartNum) - 1;
+
+            $(this).next("span").text(heartNum);
+
+            $(this).css("color", "white");
+            $(this).css("-webkit-text-stroke", "1px #b5aec4");
+
+            $(this).removeClass("liked");
+            $(this).addClass("notliked");
+        }
+    });
 </script>
 </body>
 </html>

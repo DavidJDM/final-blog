@@ -95,7 +95,7 @@
                                 <div class="post-comment-share-area d-flex">
                                     <!-- Post Favourite -->
                                     <div class="post-favourite">
-                                        <a href="#"><i class="fas fa-heart"></i> {{ @result['num_likes'] }}</a>
+                                        <a href="#"><i class="fas fa-heart"></i> <span id="numOfLikes">{{ @result['num_likes'] }}</span></a>
                                     </div>
                                     <!-- Post Comments -->
                                     <div class="post-comments">
@@ -293,5 +293,29 @@
 
 <script>
     $(".navbar-nav li:nth-child(3)").addClass("active");
+    var liked = false;
+
+    $("i.fas.fa-heart").click(function(){
+
+        if(liked == false)
+        {
+            var heartNum = $("i.fas.fa-heart").parent().text();
+            heartNum = parseInt(heartNum) + 1;
+            $("#numOfLikes").text(heartNum);
+            $(this).css("color", "#e30000");
+            $(this).css("-webkit-text-stroke", "1px #e30000");
+            liked = true;
+        }
+
+        else if(liked == true)
+        {
+            var heartNum = $("i.fas.fa-heart").parent().text();
+            heartNum = parseInt(heartNum) - 1;
+            $("#numOfLikes").text(heartNum);
+            $(this).css("color", "white");
+            $(this).css("-webkit-text-stroke", "1px #b5aec4");
+            liked = false;
+        }
+    });
 </script>
 </body>
