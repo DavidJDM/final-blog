@@ -16,7 +16,8 @@ class Database
      */
     public function connect()
     {
-        require_once('/home/dkovalev/final-config.php');
+        //require_once('/home/dkovalev/final-config.php');
+        require_once('/home/bskargre/final-config.php');
 
         try {
             //instantiate a database object
@@ -128,9 +129,13 @@ class Database
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         if(sizeof($results) == 1) {
-            $user = new User();
+            //construct a new user with values and a signed in as true boolean
+            global $user;
+            //$user = new User($results['user_id'], $results['fullname'], $results['email'], true);
+            $user->setId($results['user_id']);
             $user->setEmail($results['email']);
             $user->setName($results['fullname']);
+            $user->setSignedIn(true);
             return $user;
         }
         return false;

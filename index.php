@@ -127,7 +127,8 @@ $f3->route('GET|POST /sign-in', function($f3) {
         $db->connect();
 
         $user = $db->checkSignin($email, $pass);
-        if($user !== false) {
+
+        if($user->getSignedIn() != false) {
             $f3->reroute('home');
         }
     }

@@ -8,8 +8,51 @@
 
 class User
 {
-    private $name;
-    private $email;
+    public $id;
+    public $name;
+    public $email;
+    public $signedIn;
+
+    /**
+     * User constructor.
+     * @param $id
+     * @param $name
+     * @param $email
+     * @param $signedIn
+     */
+    public function __construct($id, $name, $email, $signedIn = false)
+    {
+        $this->id = $id;
+        $this->name = $name;
+        $this->email = $email;
+        $this->signedIn = $signedIn;
+    }
+
+    /**
+     * User constructor.
+     * @param $id
+     * @param $name
+     * @param $email
+     * @param $signedIn
+     */
+
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
 
     /**
      * @return mixed
@@ -42,4 +85,22 @@ class User
     {
         $this->email = $email;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSignedIn()
+    {
+        return $this->signedIn;
+    }
+
+    /**
+     * @param mixed $signedIn
+     */
+    public function setSignedIn($signedIn)
+    {
+        $this->signedIn = $signedIn;
+    }
+
+
 }
