@@ -1510,14 +1510,23 @@ li {
     color: #fc6c3f !important;
 }
 
+div.post-favourite a {
+    cursor: auto !important;
+}
+
 i.fas.fa-heart {
     color: white;
     -webkit-text-stroke: 1px #b5aec4;
-    -webkit-transition-duration: 1000ms;
-    transition-duration: 1000ms;
+    -webkit-transition-duration: 750ms;
+    transition-duration: 750ms;
+    cursor: pointer;
 }
 
 i.fas.fa-comment {
     color: white;
     -webkit-text-stroke: 1px #b5aec4;
+}
+
+div.post-content {
+
 }

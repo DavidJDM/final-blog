@@ -293,28 +293,35 @@
 
 <script>
     $(".navbar-nav li:nth-child(3)").addClass("active");
-    var liked = false;
 
     $("i.fas.fa-heart").click(function(){
 
-        if(liked == false)
+        if($(this).hasClass("notliked"))
         {
-            var heartNum = $("i.fas.fa-heart").parent().text();
+            var heartNum = $(this).parent().text();
             heartNum = parseInt(heartNum) + 1;
-            $("#numOfLikes").text(heartNum);
+
+            $(this).next("span").text(heartNum);
+
             $(this).css("color", "#e30000");
             $(this).css("-webkit-text-stroke", "1px #e30000");
-            liked = true;
+
+            $(this).removeClass("notliked");
+            $(this).addClass("liked");
         }
 
-        else if(liked == true)
+        else if($(this).hasClass("liked"))
         {
-            var heartNum = $("i.fas.fa-heart").parent().text();
+            var heartNum = $(this).parent().text();
             heartNum = parseInt(heartNum) - 1;
-            $("#numOfLikes").text(heartNum);
+
+            $(this).next("span").text(heartNum);
+
             $(this).css("color", "white");
             $(this).css("-webkit-text-stroke", "1px #b5aec4");
-            liked = false;
+
+            $(this).removeClass("liked");
+            $(this).addClass("notliked");
         }
     });
 </script>
