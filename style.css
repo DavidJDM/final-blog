@@ -1513,6 +1513,8 @@ li {
 i.fas.fa-heart {
     color: white;
     -webkit-text-stroke: 1px #b5aec4;
+    -webkit-transition-duration: 1000ms;
+    transition-duration: 1000ms;
 }
 
 i.fas.fa-comment {
