@@ -1,22 +1,21 @@
 $("i.fas.fa-heart").click(function(){
     let id = $(this).next('span').attr('id');
     id = id.match(/\d+/);
-    // id = parseInt(id);
-    alert(id);
-    alert('before post');
+    id = parseInt(id, 10);
     $.post(
         'jquery/likeButton.php',
-        {id : id},
-        function(result) {
-            if(!result) {
-                alert("you are not signed in");
+        {post_id : id},
+        function(result, status) {
+            if(status) {
+                alert('status == true');
+                alert(result);
             }
             else {
-                alert("you are signed in");
+                alert('else');
+                alert(result);
             }
         }
     );
-    alert('after post');
     if($(this).hasClass("notliked"))
     {
         var heartNum = $(this).parent().text();

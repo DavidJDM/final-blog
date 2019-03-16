@@ -20,7 +20,7 @@ class Database
             require_once('/home/dkovalev/final-config.php');
         }
 
-        else if($_SERVER['HTTP_HOST'] == "http://bskar.greenriverdev.com") {
+        else if($_SERVER['HTTP_HOST'] == "bskar.greenriverdev.com") {
             require_once('/home/bskargre/final-config.php');
         }
 
@@ -115,7 +115,7 @@ class Database
     {
         global $dbh;
 
-        $sql = "SELECT fullname, email, password FROM users
+        $sql = "SELECT user_id, fullname, email, password FROM users
                 WHERE email = :email AND password = :password";
 
         $statement = $dbh->prepare($sql);
@@ -131,16 +131,15 @@ class Database
             print_r($arr[2]);
         }
 
-        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $results = $statement->fetch(PDO::FETCH_ASSOC);
 
-        if(sizeof($results) == 1) {
+        if(!empty($results)) {
             //construct a new user with values and a signed in as true boolean
-            global $user;
-            //$user = new User($results['user_id'], $results['fullname'], $results['email'], true);
+            $user = new User();
+
             $user->setId($results['user_id']);
             $user->setEmail($results['email']);
             $user->setName($results['fullname']);
-            $user->setSignedIn(true);
             return $user;
         }
         return false;

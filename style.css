@@ -351,7 +351,7 @@ li {
 }
 
 .top_header_area .top_social_bar > a:last-of-type {
-    margin-right: 0;
+    margin-right: 30px;
 }
 
 .top_header_area .signup-search-area {

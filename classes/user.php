@@ -6,36 +6,11 @@
  * Time: 12:17 PM
  */
 
-class User
+class User implements JsonSerializable
 {
     public $id;
     public $name;
     public $email;
-    public $signedIn;
-
-    /**
-     * User constructor.
-     * @param $id
-     * @param $name
-     * @param $email
-     * @param $signedIn
-     */
-    public function __construct($id, $name, $email, $signedIn = false)
-    {
-        $this->id = $id;
-        $this->name = $name;
-        $this->email = $email;
-        $this->signedIn = $signedIn;
-    }
-
-    /**
-     * User constructor.
-     * @param $id
-     * @param $name
-     * @param $email
-     * @param $signedIn
-     */
-
 
     /**
      * @return mixed
@@ -86,21 +61,12 @@ class User
         $this->email = $email;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getSignedIn()
+    public function jsonSerialize()
     {
-        return $this->signedIn;
+        return array(
+            'id'=>$this->id,
+            'name'=>$this->name,
+            'email'=>$this->email
+        );
     }
-
-    /**
-     * @param mixed $signedIn
-     */
-    public function setSignedIn($signedIn)
-    {
-        $this->signedIn = $signedIn;
-    }
-
-
 }

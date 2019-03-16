@@ -125,16 +125,31 @@ $f3->route('GET|POST /sign-in', function($f3) {
 
         $db = new Database();
         $db->connect();
-
         $user = $db->checkSignin($email, $pass);
 
-        if($user->getSignedIn() != false) {
+        if($user !== false) {
+            $_SESSION['user'] = $user;
             $f3->reroute('home');
         }
     }
 
     $template = new Template();
     echo $template->render('views/sign-in.html');
+});
+
+//route to sign in page after signing out
+$f3->route('GET|POST /sign-out', function($f3) {
+    $_SESSION['user'] = null;
+
+    $template = new Template();
+    echo $template->render('views/sign-in.html');
+});
+
+//route to test page
+$f3->route('GET|POST /anything', function($f3) {
+
+    $template = new Template();
+    echo $template->render('about.php');
 });
 
 $f3->run();

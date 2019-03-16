@@ -12,6 +12,9 @@
                     <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
                     <a href="mailto:milanaletters@gmail.com" target="_top"><i class="fas fa-envelope"></i></a>
                     <a href="https://www.instagram.com/milanaletters/?hl=en" target="_blank"><i class="fas fa-pen-fancy"></i></a>
+                    <check if="!empty({{ @_SESSION['user'] }})">
+                        Welcome, {{ @_SESSION['user']->getName() }}
+                    </check>
                 </div>
             </div>
             <!--  Login Register Area -->
@@ -31,14 +34,25 @@
                     </div>
                 </div>
             </div>
-            <div class="col-2 col-sm-2 signup-search-area align-items-center login_register_area d-flex">
-                <div class="login">
-                    <a href="sign-in">Sign in</a>
-                </div>
-                <div class="register">
-                    <a href="register">Sign up</a>
-                </div>
-            </div>
+            <check if="!empty({{ @_SESSION['user'] }})">
+                <true>
+                    <div class="col-2 col-sm-2 signup-search-area align-items-center login_register_area d-flex">
+                        <div class="logout">
+                            <a href="sign-out">Sign out</a>
+                        </div>
+                    </div>
+                </true>
+                <false>
+                    <div class="col-2 col-sm-2 signup-search-area align-items-center login_register_area d-flex">
+                        <div class="login">
+                            <a href="sign-in">Sign in</a>
+                        </div>
+                        <div class="register">
+                            <a href="register">Sign up</a>
+                        </div>
+                    </div>
+                </false>
+            </check>
         </div>
     </div>
 </div>

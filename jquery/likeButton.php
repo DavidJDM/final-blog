@@ -6,14 +6,7 @@
  * Time: 1:25 PM
  */
 
-global $user;
-echo "<script>alert('hello')</script>";
-if($user->getSignedIn()) {
-    $id = $_POST['id'];
+$id = $_POST['post_id'];
+$user = $_POST['user'];
 
-    $db = new Database();
-    $db->connect();
-}
-else {
-    return false;
-}
+echo $_POST['user'];
