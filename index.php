@@ -124,6 +124,8 @@ $f3->route('GET|POST /register', function($f3) {
 
 // Route to sign in page
 $f3->route('GET|POST /sign-in', function($f3) {
+    $f3->set('emailExists', true);
+    $f3->set('invalidPassword', false);
     $f3->set('title', 'Milana\'s Blog | Sign-in');
 
     if(isset($_POST['signin'])) {
