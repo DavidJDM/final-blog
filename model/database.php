@@ -111,6 +111,17 @@ class Database
         }
     }
 
+    public function checkAdminSignin($email, $pass)
+    {
+        global $dbh;
+
+        if(strtolower($email) === "milanakovalevich@hotmail.com" && $pass === "adminmilana2019") {
+
+            return true;
+        }
+        return false;
+    }
+
     public function checkSignin($email, $pass)
     {
         global $dbh;
@@ -141,6 +152,31 @@ class Database
             $user->setEmail($results['email']);
             $user->setName($results['fullname']);
             return $user;
+        }
+        return false;
+    }
+
+    public function emailExists($email)
+    {
+        global $dbh;
+
+        $sql = "SELECT user_id FROM users WHERE email = :email";
+
+        $statement = $dbh->prepare($sql);
+
+        //bind all the parameters
+        $statement->bindValue(':email', $email, PDO::PARAM_STR);
+
+        $statement->execute();
+        $arr = $statement->errorInfo();
+        if(isset($arr[2])) {
+            print_r($arr[2]);
+        }
+
+        $results = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if(!empty($results)) {
+            return true;
         }
         return false;
     }

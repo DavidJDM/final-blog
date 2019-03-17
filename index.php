@@ -102,11 +102,19 @@ $f3->route('GET|POST /register', function($f3) {
         $validPass = validatePassword($pass, $re_pass);
         $f3->set('validEmail', $validEmail);
         $f3->set('validPass', $validPass);
+        $db = new Database();
+        $db->connect();
+
         if($validEmail && $validPass) {
-            $db = new Database();
-            $db->connect();
             $db->createUser($name, $email, $pass);
             $f3->reroute('home');
+        }
+
+        else {
+            $emailTaken = $db->emailExists($email);
+            if($emailTaken) {
+                $f3->set("emailTaken", true);
+            }
         }
     }
 
@@ -125,6 +133,49 @@ $f3->route('GET|POST /sign-in', function($f3) {
 
         $db = new Database();
         $db->connect();
+        $userAdmin = $db->checkAdminSignin($email, $pass);
+        $user = $db->checkSignin($email, $pass);
+        $emailExists = $db->emailExists($email);
+
+        if($userAdmin !== false)
+        {
+            $_SESSION['user'] = $user;
+            $f3->reroute('admin');
+        }
+
+        if($user !== false) {
+            $_SESSION['user'] = $user;
+            $f3->reroute('home');
+        }
+
+        else {
+            if(!$emailExists) {
+                $f3->set('emailExists', false);
+            }
+
+            else {
+                $f3->set('emailExists', true);
+                $f3->set('invalidPassword', true);
+            }
+        }
+    }
+
+
+    $template = new Template();
+    echo $template->render('views/sign-in.html');
+});
+
+// Route to admin page
+$f3->route('GET|POST /admin', function($f3) {
+    $f3->set('title', 'Milana\'s Blog | Admin');
+
+    if(isset($_POST['signin'])) {
+        //get POST information
+        $email = $_POST['your_email'];
+        $pass = $_POST['your_pass'];
+
+        $db = new Database();
+        $db->connect();
         $user = $db->checkSignin($email, $pass);
 
         if($user !== false) {
@@ -134,15 +185,14 @@ $f3->route('GET|POST /sign-in', function($f3) {
     }
 
     $template = new Template();
-    echo $template->render('views/sign-in.html');
+    echo $template->render('views/admin.html');
 });
 
 //route to sign in page after signing out
 $f3->route('GET|POST /sign-out', function($f3) {
     $_SESSION['user'] = null;
 
-    $template = new Template();
-    echo $template->render('views/sign-in.html');
+    $f3->reroute('sign-in');
 });
 
 //route to test page
