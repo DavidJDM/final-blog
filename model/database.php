@@ -144,4 +144,29 @@ class Database
         }
         return false;
     }
+
+    public function updateNumLikes($post_id, $user_id)
+    {
+        global $dbh;
+
+        $sql = "SELECT posts_liked.user_id, posts_liked.post_id, posts.num_likes 
+        FROM posts_liked INNER JOIN posts ON posts_liked.post_id = posts.post_id
+        WHERE posts_liked.post_id = :post_id AND posts_liked.user_id = :user_id";
+
+        $statement = $dbh->prepare($sql);
+
+        //bind all the parameters
+        $statement->bindValue(':post_id', $post_id, PDO::PARAM_STR);
+        $statement->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+
+
+        $statement->execute();
+        $arr = $statement->errorInfo();
+        if(isset($arr[2])) {
+            print_r($arr[2]);
+        }
+
+        $results = $statement->fetch(PDO::FETCH_ASSOC);
+
+    }
 }

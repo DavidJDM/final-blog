@@ -2,11 +2,14 @@
 /**
  * Created by PhpStorm.
  * User: Brandon
- * Date: 3/15/2019
- * Time: 1:25 PM
+ * Date: 3/16/2019
+ * Time: 12:43 PM
  */
 
-$id = $_POST['post_id'];
-$user = $_POST['user'];
-
-echo $_POST['user'];
+//$post_id = $_POST['post_id'];
+//$user_id = $_SESSION['user']->getId();
+//$db = new Database();
+////echo $post_id;
+//$db->connect();
+//$db->updateNumLikes($post_id, $user_id);
+echo true;

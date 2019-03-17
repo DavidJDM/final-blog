@@ -146,10 +146,14 @@ $f3->route('GET|POST /sign-out', function($f3) {
 });
 
 //route to test page
-$f3->route('GET|POST /anything', function($f3) {
+$f3->route('GET|POST /checkLikedStatus', function($f3) {
+    if(empty($_SESSION['user'])) {
+        echo false;
+    }
+    else {
+        include('jquery/likeButton.php');
+    }
 
-    $template = new Template();
-    echo $template->render('about.php');
 });
 
 $f3->run();

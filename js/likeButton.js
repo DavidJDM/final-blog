@@ -3,16 +3,19 @@ $("i.fas.fa-heart").click(function(){
     id = id.match(/\d+/);
     id = parseInt(id, 10);
     $.post(
-        'jquery/likeButton.php',
+        'checkLikedStatus',
         {post_id : id},
-        function(result, status) {
-            if(status) {
-                alert('status == true');
+        function(result) {
+            if(result) {
+                alert('result == true');
                 alert(result);
             }
             else {
-                alert('else');
-                alert(result);
+                let answer = confirm("You are not logged in. Would you like to log in?");
+
+                if(answer) {
+                    window.location.replace('sign-in');
+                }
             }
         }
     );
