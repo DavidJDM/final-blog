@@ -61,6 +61,30 @@ class Database
         return $results;
     }
 
+
+    public function getPostsLiked($user_id)
+    {
+        global $dbh;
+
+        $sql = "SELECT post_id FROM posts_liked
+                WHERE user_id = :user_id";
+
+        $statement = $dbh->prepare($sql);
+
+        //bind all the parameters
+        $statement->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+
+        $statement->execute();
+        $arr = $statement->errorInfo();
+        if(isset($arr[2])) {
+            print_r($arr[2]);
+        }
+
+        $userLikes = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $userLikes;
+    }
+
     /**
      * @param $email the email from the user to check the database for availability
      * @return bool returns true if there are no emails matching the email
