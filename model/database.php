@@ -315,8 +315,7 @@ class Database
             print_r($arr[2]);
         }
 
-        $results = $statement->fetch(PDO::FETCH_ASSOC);
-
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $results;
     }
