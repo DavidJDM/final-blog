@@ -297,6 +297,10 @@ figure {
   display: block;
   text-align: center; }
 
+.signup-image-link:hover {
+  color: #4292dc;
+  text-decoration: underline; }
+
 .term-service {
   font-size: 13px;
   color: #222; }
@@ -605,3 +609,15 @@ label.valid {
 
 .top_header_area {
   background: #fff; }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  background: #fff !important;
+  -webkit-text-fill-color: black !important; }
