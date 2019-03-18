@@ -249,6 +249,7 @@ $f3->route('GET|POST /checkLikedStatus', function($f3) {
     }
     else {
         include('jquery/likeButton.php');
+        echo true;
     }
 
 });
