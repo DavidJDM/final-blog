@@ -115,7 +115,7 @@ class Database
     {
         global $dbh;
 
-        if(strtolower($email) === "milanakovalevich@hotmail.com" && $pass === "adminmilana2019") {
+        if(strtolower($email) === "admin" && $pass === "adminmilana2019") {
 
             return true;
         }
@@ -272,5 +272,28 @@ class Database
                 print_r($arr[2]);
             }
         }
+    }
+
+    public function getSinglePost($postid)
+    {
+        global $dbh;
+
+        $sql = "SELECT * FROM `posts` WHERE post_id = :post_id;";
+
+        $statement = $dbh->prepare($sql);
+
+        //bind all the parameters
+        $statement->bindValue(':post_id', $postid, PDO::PARAM_STR);
+
+        $statement->execute();
+        $arr = $statement->errorInfo();
+        if(isset($arr[2])) {
+            print_r($arr[2]);
+        }
+
+        $results = $statement->fetch(PDO::FETCH_ASSOC);
+
+
+        return $results;
     }
 }

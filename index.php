@@ -167,6 +167,51 @@ $f3->route('GET|POST /sign-in', function($f3) {
     echo $template->render('views/sign-in.html');
 });
 
+// Route to sign in page
+$f3->route('GET|POST /post_', function($f3) {
+    $f3->set('emailExists', true);
+    $f3->set('invalidPassword', false);
+    $f3->set('title', 'Milana\'s Blog | Sign-in');
+
+    if(isset($_POST['signin'])) {
+        //get POST information
+        $email = $_POST['your_email'];
+        $pass = $_POST['your_pass'];
+
+        $db = new Database();
+        $db->connect();
+        $userAdmin = $db->checkAdminSignin($email, $pass);
+        $user = $db->checkSignin($email, $pass);
+        $emailExists = $db->emailExists($email);
+
+        if($userAdmin !== false)
+        {
+            $_SESSION['user'] = $user;
+            $f3->reroute('admin');
+        }
+
+        if($user !== false) {
+            $_SESSION['user'] = $user;
+            $f3->reroute('home');
+        }
+
+        else {
+            if(!$emailExists) {
+                $f3->set('emailExists', false);
+            }
+
+            else {
+                $f3->set('emailExists', true);
+                $f3->set('invalidPassword', true);
+            }
+        }
+    }
+
+
+    $template = new Template();
+    echo $template->render('views/sign-in.html');
+});
+
 // Route to admin page
 $f3->route('GET|POST /admin', function($f3) {
     $f3->set('title', 'Milana\'s Blog | Admin');
