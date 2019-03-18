@@ -126,7 +126,7 @@ class Database
     {
         global $dbh;
 
-        $sql = "SELECT user_id, fullname, email, password FROM users
+        $sql = "SELECT user_id, fullname, email, password, admin, admin_view FROM users
                 WHERE email = :email AND password = :password";
 
         $statement = $dbh->prepare($sql);

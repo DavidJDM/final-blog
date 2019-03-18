@@ -12,34 +12,42 @@
                     <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
                     <a href="mailto:milanaletters@gmail.com" target="_top"><i class="fas fa-envelope"></i></a>
                     <a href="https://www.instagram.com/milanaletters/?hl=en" target="_blank"><i class="fas fa-pen-fancy"></i></a>
-                    <check if="!empty({{ @_SESSION['user'] }})">
-                        Welcome, {{ @_SESSION['user']->getName() }}
-                    </check>
                 </div>
             </div>
             <!--  Login Register Area -->
-            <div class="col-5 col-sm-4">
+            <div class="col-2 col-sm-2">
                 <div class="signup-search-area d-flex align-items-center justify-content-end">
-                    <!-- Search Button Area -->
-                    <div class="search_button">
-                        <a class="searchBtn" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-                    </div>
-                    <!-- Search Form -->
-                    <div class="search-hidden-form">
-                        <form action="#" method="get">
-                            <input type="search" name="search" id="search-anything" placeholder="Search Anything...">
-                            <input type="submit" value="" class="d-none">
-                            <span class="searchBtn"><i class="fa fa-times" aria-hidden="true"></i></span>
-                        </form>
-                    </div>
+                    <check if="!empty({{ @_SESSION['user'] }})">
+
+                    </check>
                 </div>
             </div>
             <check if="!empty({{ @_SESSION['user'] }})">
                 <true>
-                    <div class="col-2 col-sm-2 signup-search-area align-items-center login_register_area d-flex">
-                        <div class="logout">
-                            <a href="sign-out">Sign out</a>
+                    <div class="col-5 col-sm-4 signup-search-area align-items-center login_register_area d-flex">
+                        <div class="search_button">
+                            <i class="fas fa-user"></i>
                         </div>
+                        <!-- Search Button Area -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ @_SESSION['user']->getName() }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <check if="{{ @_SESSION['user']->getAdmin() }} == 1">
+                                    <true>
+                                        <a class="dropdown-item" href="#">Create Post</a>
+                                        <a class="dropdown-item" href="#">View Members</a>
+                                        <a class="dropdown-item" href="#">View Posts</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="sign-out">Sign Out</a>
+                                    </true>
+                                    <false>
+                                        <a class="dropdown-item" href="sign-out">Sign Out</a>
+                                    </false>
+                                </check>
+                            </div>
+                        </li>
                     </div>
                 </true>
                 <false>

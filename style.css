@@ -1527,6 +1527,11 @@ i.fas.fa-comment {
     -webkit-text-stroke: 1px #b5aec4;
 }
 
+i.fas.fa-user {
+    color: white;
+    -webkit-text-stroke: 1px #b5aec4;
+}
+
 div.post-content {
 
 }
