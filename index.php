@@ -47,11 +47,12 @@ $f3->route('GET|POST /travel', function($f3) {
     $results = $db->getPostInfo(1);
     if(!empty($_SESSION['user'])) {
         $userLikes = $db->getPostsLiked($_SESSION['user']->getId());
+        foreach($userLikes as $userLike) {
+            $likes[] = $userLike['post_id'];
+        }
     }
 
-    print_r($results['post_id']);
-    print_r($userLikes);
-    $f3->set('userLikes', $userLikes);
+    $f3->set('likes', $likes);
     $f3->set('results', $results);
 
     $template = new Template();

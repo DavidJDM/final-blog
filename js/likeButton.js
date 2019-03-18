@@ -14,9 +14,6 @@ $("i.fas.fa-heart").click(function(){
 
                     $(this).next("span").text(heartNum);
 
-                    $(this).css("color", "#e30000");
-                    $(this).css("-webkit-text-stroke", "1px #e30000");
-
                     $(this).removeClass("notliked");
                     $(this).addClass("liked");
                 }
@@ -27,9 +24,6 @@ $("i.fas.fa-heart").click(function(){
                     heartNum = parseInt(heartNum) - 1;
 
                     $(this).next("span").text(heartNum);
-
-                    $(this).css("color", "white");
-                    $(this).css("-webkit-text-stroke", "1px #b5aec4");
 
                     $(this).removeClass("liked");
                     $(this).addClass("notliked");

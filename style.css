@@ -1536,6 +1536,16 @@ div.post-content {
 
 }
 
+.liked {
+    color: #e30000 !important;
+    -webkit-text-stroke: 1px #e30000 !important;
+}
+
+.notliked {
+    color: white;
+    -webkit-text-stroke: 1px #b5aec4;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus

@@ -100,7 +100,7 @@
                                         <a href="#"><i
                                                 <check if="!empty(@_SESSION['user'])">
                                                     <true>
-                                                        <check if="{{ in_array(@result['post_id'], @userLikes['post_id']) }}">
+                                                        <check if="{{ in_array(@result['post_id'], @likes) }}">
                                                             <true>
                                                                 class="fas fa-heart liked"
                                                             </true>
@@ -114,7 +114,7 @@
                                                     </false>
                                                 </check>
                                             >
-                                            </i> <span id="post-{{@result['post_id']}}-numOfLikes">{{ @result['num_likes'] }}</span></a>
+                                            </i> <span id="post-{{ @result['post_id'] }}-numOfLikes">{{ @result['num_likes'] }}</span></a>
                                     </div>
                                     <!-- Post Comments -->
                                     <div class="post-comments">
