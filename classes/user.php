@@ -11,6 +11,8 @@ class User implements JsonSerializable
     public $id;
     public $name;
     public $email;
+    public $admin;
+    public $adminView;
 
     /**
      * @return mixed
@@ -69,4 +71,38 @@ class User implements JsonSerializable
             'email'=>$this->email
         );
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAdmin()
+    {
+        return $this->admin;
+    }
+
+    /**
+     * @param mixed $admin
+     */
+    public function setAdmin($admin)
+    {
+        $this->admin = $admin;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAdminView()
+    {
+        return $this->adminView;
+    }
+
+    /**
+     * @param mixed $adminView
+     */
+    public function setAdminView($adminView)
+    {
+        $this->adminView = $adminView;
+    }
+
+
 }

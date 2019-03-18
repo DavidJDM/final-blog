@@ -93,8 +93,8 @@ class Database
         global $dbh;
 
         $email = strtolower($email);
-        $sql = "INSERT INTO users(fullname, email, password)
-                VALUES(:fullname, :email, :password)";
+        $sql = "INSERT INTO users(fullname, email, password, admin, admin_view)
+                VALUES(:fullname, :email, :password, 0, 0)";
 
         $statement = $dbh->prepare($sql);
 
@@ -151,20 +151,19 @@ class Database
             $user->setId($results['user_id']);
             $user->setEmail($results['email']);
             $user->setName($results['fullname']);
+            $user->setAdmin($results['admin']);
+            $user->setAdminView($results['admin_view']);
             return $user;
         }
         return false;
     }
 
-<<<<<<< HEAD
     /**
      * Determines whether the user has already liked a post and then updates the database accordingly
      * (num_likes decrements if it is already liked by this user or num_likes increments if it is not liked
      * by this user)
-     * @param $post_id Gets the posts id number
-     * @param $user_id Gets the users id number
+     * @return bool boolean whether the email already exists in the database or not
      */
-=======
     public function emailExists($email)
     {
         global $dbh;
@@ -190,7 +189,6 @@ class Database
         return false;
     }
 
->>>>>>> d0f8cbfa0c580bf686e29d88e25c9699c2596d55
     public function updateNumLikes($post_id, $user_id)
     {
         global $dbh;
