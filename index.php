@@ -212,6 +212,17 @@ $f3->route('GET|POST /post_', function($f3) {
     echo $template->render('views/sign-in.html');
 });
 
+// Route to sign in page
+$f3->route('GET|POST /create-post', function($f3) {
+    $f3->set('title', 'Create Post');
+
+
+
+
+    $template = new Template();
+    echo $template->render('views/create-post.html');
+});
+
 // Route to admin page
 $f3->route('GET|POST /admin', function($f3) {
     $f3->set('title', 'Milana\'s Blog | Admin');
@@ -249,7 +260,6 @@ $f3->route('GET|POST /checkLikedStatus', function($f3) {
     }
     else {
         include('jquery/likeButton.php');
-        echo true;
     }
 
 });
