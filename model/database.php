@@ -145,6 +145,13 @@ class Database
         return false;
     }
 
+    /**
+     * Determines whether the user has already liked a post and then updates the database accordingly
+     * (num_likes decrements if it is already liked by this user or num_likes increments if it is not liked
+     * by this user)
+     * @param $post_id Gets the posts id number
+     * @param $user_id Gets the users id number
+     */
     public function updateNumLikes($post_id, $user_id)
     {
         global $dbh;
@@ -168,5 +175,65 @@ class Database
 
         $results = $statement->fetch(PDO::FETCH_ASSOC);
 
+        //if the logged in user has not liked this post before update the database
+        if(empty($results)) {
+            $sql = "INSERT INTO posts_liked (user_id, post_id)
+                    VALUES(:user_id, :post_id)";
+
+            $statement = $dbh->prepare($sql);
+
+            $statement->bindValue(':post_id', $post_id, PDO::PARAM_STR);
+            $statement->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+
+            $statement->execute();
+            $arr = $statement->errorInfo();
+            if(isset($arr[2])) {
+                print_r($arr[2]);
+            }
+
+            $sql = "UPDATE posts
+                    SET num_likes = num_likes + 1
+                    WHERE post_id = :post_id";
+
+            $statement = $dbh->prepare($sql);
+
+            $statement->bindValue(':post_id', $post_id, PDO::PARAM_STR);
+
+            $statement->execute();
+            $arr = $statement->errorInfo();
+            if(isset($arr[2])) {
+                print_r($arr[2]);
+            }
+        }
+
+        else {
+            $sql = "DELETE FROM posts_liked
+                    VALUES(:user_id, :post_id)";
+
+            $statement = $dbh->prepare($sql);
+
+            $statement->bindValue(':post_id', $post_id, PDO::PARAM_STR);
+            $statement->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+
+            $statement->execute();
+            $arr = $statement->errorInfo();
+            if(isset($arr[2])) {
+                print_r($arr[2]);
+            }
+
+            $sql = "UPDATE posts
+                    SET num_likes = num_likes - 1
+                    WHERE post_id = :post_id";
+
+            $statement = $dbh->prepare($sql);
+
+            $statement->bindValue(':post_id', $post_id, PDO::PARAM_STR);
+
+            $statement->execute();
+            $arr = $statement->errorInfo();
+            if(isset($arr[2])) {
+                print_r($arr[2]);
+            }
+        }
     }
 }
