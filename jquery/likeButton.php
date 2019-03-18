@@ -11,4 +11,5 @@ $user_id = $_SESSION['user']->getId();
 $db = new Database();
 //echo $post_id;
 $db->connect();
+
 $db->updateNumLikes($post_id, $user_id);

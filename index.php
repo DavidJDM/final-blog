@@ -38,13 +38,20 @@ $f3->route('GET|POST /home', function($f3) {
 });
 
 // Route to travel page
-$f3->route('GET /travel', function($f3) {
+$f3->route('GET|POST /travel', function($f3) {
     $f3->set('title', 'Milana\'s Blog | Travel');
 
     //connect to database and get 12 most recent travel posts
     $db = new Database();
     $db->connect();
     $results = $db->getPostInfo(1);
+    if(!empty($_SESSION['user'])) {
+        $userLikes = $db->getPostsLiked($_SESSION['user']->getId());
+    }
+
+    print_r($results['post_id']);
+    print_r($userLikes);
+    $f3->set('userLikes', $userLikes);
     $f3->set('results', $results);
 
     $template = new Template();
@@ -167,51 +174,6 @@ $f3->route('GET|POST /sign-in', function($f3) {
     echo $template->render('views/sign-in.html');
 });
 
-// Route to sign in page
-$f3->route('GET|POST /post_', function($f3) {
-    $f3->set('emailExists', true);
-    $f3->set('invalidPassword', false);
-    $f3->set('title', 'Milana\'s Blog | Sign-in');
-
-    if(isset($_POST['signin'])) {
-        //get POST information
-        $email = $_POST['your_email'];
-        $pass = $_POST['your_pass'];
-
-        $db = new Database();
-        $db->connect();
-        $userAdmin = $db->checkAdminSignin($email, $pass);
-        $user = $db->checkSignin($email, $pass);
-        $emailExists = $db->emailExists($email);
-
-        if($userAdmin !== false)
-        {
-            $_SESSION['user'] = $user;
-            $f3->reroute('admin');
-        }
-
-        if($user !== false) {
-            $_SESSION['user'] = $user;
-            $f3->reroute('home');
-        }
-
-        else {
-            if(!$emailExists) {
-                $f3->set('emailExists', false);
-            }
-
-            else {
-                $f3->set('emailExists', true);
-                $f3->set('invalidPassword', true);
-            }
-        }
-    }
-
-
-    $template = new Template();
-    echo $template->render('views/sign-in.html');
-});
-
 // Route to admin page
 $f3->route('GET|POST /admin', function($f3) {
     $f3->set('title', 'Milana\'s Blog | Admin');
@@ -252,6 +214,18 @@ $f3->route('GET|POST /checkLikedStatus', function($f3) {
         echo true;
     }
 
+});
+
+//view as admin
+$f3->route('GET|POST /view-admin', function($f3) {
+    if($_SESSION['user']->getAdminView() == 0) {
+        $_SESSION['user']->setAdminView(1);
+    }
+    else {
+        $_SESSION['user']->setAdminView(0);
+    }
+
+    $f3->reroute('home');
 });
 
 $f3->run();
