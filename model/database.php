@@ -381,6 +381,10 @@ class Database
     {
         global $dbh;
 
+        $body = htmlentities($body);
+        $body = str_replace("<","&lt;", $body);
+        $body = str_replace(">","&gt;", $body);
+
         $sql = "INSERT INTO `posts`(`category_id`, `title`, `body`, `image`, `author`, `num_likes`, `num_comments`, `date`) VALUES (:category, :title, :body, :image, :author, 0, 0, now())";
 
         $statement = $dbh->prepare($sql);

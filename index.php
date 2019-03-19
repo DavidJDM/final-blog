@@ -177,7 +177,7 @@ $f3->route('GET|POST /view-post-@postid', function($f3, $params) {
     $db->connect();
     $post = $db->getSinglePost($postid);
     $f3->set('post', $post[0]);
-    $f3->set('body', htmlspecialchars_decode($post[0]['body']));
+    $f3->set('body', $post[0]['body']);
     $f3->set('title', $post[0]['title']);
 
     $post_date = $post[0]['date'];
