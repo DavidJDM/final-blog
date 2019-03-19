@@ -13,3 +13,5 @@ $db = new Database();
 $db->connect();
 
 $db->updateNumLikes($post_id, $user_id);
+
+echo true;

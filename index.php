@@ -227,7 +227,6 @@ $f3->route('GET|POST /create-post', function($f3) {
 
 // Route to view-members page
 $f3->route('GET|POST /view-members', function($f3) {
-    $f3->set('title', 'View Members');
 
     $db = new Database();
     $db->connect();
