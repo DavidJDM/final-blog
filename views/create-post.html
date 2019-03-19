@@ -21,6 +21,195 @@
 
     <!-- Font Awesome Latest -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Raleway);
+
+        .cont-contactBtn a, .cont-contactBtn p {
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .cont-contactInfo {
+            float: left;
+            padding-right: 5%;
+            width: 45%;
+        }
+        .cont-contactInfo h3 {
+            font-size: 28px;
+        }
+        .cont-contactInfo h4 {
+            font-size: 22px;
+            font-weight: normal;
+            text-transform: uppercase;
+        }
+        .cont-contactInfo h4.section {
+            margin: 30px 0 0;
+        }
+        .cont-contactInfo p {
+            margin: 0;
+        }
+        .cont-contactInfo p > a {
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .cont-contactInfo .social-icons {
+            list-style: none;
+            margin: 5px 0 0;
+            padding: 0;
+        }
+        .cont-contactInfo .social-icons li {
+            float: left;
+            margin-right: 3px;
+        }
+        .cont-contactInfo .social-icons li a {
+            background-image: url("../images/sprite_social_icons.png");
+            background-repeat: no-repeat;
+            display: block;
+            height: 28px;
+            width: 29px;
+        }
+        .cont-contactInfo .social-icons li a:hover {
+            opacity: .8;
+        }
+        .cont-contactInfo .social-icons li a.icon_twitter {
+            background-position: -33px 0;
+        }
+        .cont-contactInfo .social-icons li a.icon_linkedin {
+            background-position: -68px 0;
+        }
+        .cont-contactInfo .social-icons li a.icon_youtube {
+            background-position: -102px 0;
+        }
+        .cont-contactInfo .social-icons li a.icon_pinterest {
+            background-position: -135px 0;
+        }
+        .cont-contactInfo .social-icons li a.icon_vimeo {
+            background-position: -169px 0;
+        }
+        .cont-contactInfo .social-icons li a.icon_instagram {
+            background-position: -204px 0;
+        }
+
+        .cont-contactBtn {
+            height: 359px;
+            margin: 0 auto;
+            width: 574px;
+            position: relative;
+            -webkit-perspective: 800px;
+            -moz-perspective: 800px;
+            -o-perspective: 800px;
+            perspective: 800px;
+        }
+        .cont-contactBtn .cont-flip {
+            position: absolute;
+            -webkit-transition: -webkit-transform 0.5s;
+            -moz-transition: -moz-transform 0.5s;
+            -o-transition: -o-transform 0.5s;
+            transition: transform 0.5s;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -o-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            height: 100%;
+            width: 100%;
+        }
+        .cont-contactBtn .cont-flip .front, .cont-contactBtn .cont-flip .back {
+            display: block;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -o-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        .cont-contactBtn .cont-flip .front {
+            background-color: #fc6c3f;
+        }
+        .cont-contactBtn .cont-flip .back {
+            background-color: #fff;
+            -webkit-transform: rotateX(180deg);
+            -moz-transform: rotateX(180deg);
+            -o-transform: rotateX(180deg);
+            transform: rotateX(180deg);
+        }
+        .cont-contactBtn .btn {
+            margin-top: 155px;
+        }
+        .cont-contactBtn .cont-flip.flipped {
+            -webkit-transform: rotateX(180deg);
+            -moz-transform: rotateX(180deg);
+            -o-transform: rotateX(180deg);
+            transform: rotateX(180deg);
+        }
+        .cont-contactBtn .contact-form {
+            padding: 0 10%;
+            margin-top: 50px;
+            width: 80%;
+        }
+        .cont-contactBtn .contact-form input, .cont-contactBtn .contact-form textarea {
+            border: 1px solid #808080;
+            font-size: 12px;
+            padding: 10px 0;
+        }
+        .cont-contactBtn .contact-form input[type="text"] {
+            float: left;
+            margin-bottom: 8px;
+            padding-left: 3%;
+            width: 44.9%;
+        }
+        .cont-contactBtn .contact-form .gutter {
+            margin-right: 2.8%;
+        }
+        .cont-contactBtn .contact-form textarea {
+            height: 106px;
+            padding-left: 3%;
+            margin-bottom: 22px;
+            width: 96.2%;
+        }
+        .cont-contactBtn .contact-form input[type="submit"] {
+            background-color: #ff4d54;
+            border: none;
+            color: #fff;
+            height: 45px;
+            width: 100%;
+            max-width: 93px;
+            text-align: center;
+        }
+        .cont-contactBtn .close {
+            display: block;
+            height: 19px;
+            width: 19px;
+            background-image: url("https://i.imgur.com/WoKg12q.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            top: 15px;
+            right: 3%;
+        }
+
+        .btn {
+            border: 3px #fff solid;
+            color: #fff;
+            display: block;
+            font-size: 15px;
+            font-weight: normal;
+            margin: 0 auto;
+            max-width: 280px;
+            padding: 15px 0;
+            text-align: center;
+            text-transform: uppercase;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .front a:hover {
+            color: black;
+            border: 3px solid black;
+        }
+
+    </style>
 </head>
 <body>
     <!-- Preloader Start -->
@@ -36,21 +225,34 @@
 
     <hr class="m-auto">
 
-    <section class="container">
-        <section class="row">
-            <div class="create-post-form">
-                <form method="post" target="">
-                    <input type="text">
-                </form>
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-1"></div>
+
+            <div class="cont-contactBtn col-10">
+                <div class="cont-flip">
+                    <div class="front">
+                        <a href="#" class="btn btn-white flip">Create Post</a>
+                    </div>
+                    <div class="back">
+                        <a href="#" class="flip close"></a>
+                        <form class="contact-form row" method="post" action="">
+                            <input name="title" class="gutter col-12" type="text" placeholder="Post Title">
+                            <input name="author" class="col-12" type="text" placeholder="Author's Name">
+                            <input name="category" class="gutter col-12" type="text" placeholder="Category ID">
+                            <input name="image" class="col-12" type="text" placeholder="Image Path">
+                            <textarea name="body" class="col-12" id="" placeholder="Post Content"></textarea>
+                            <input type="submit" name="create-post" value="Post">
+                        </form>
+                    </div>
+                </div>
             </div>
-        </section>
-    </section>
 
+            <div class="col-1"></div>
+        </div>
+    </div>
 
-
-    <!-- ****** Footer Menu Area ****** -->
-    <include href="include/footer-menu.html" />
-    <!-- ****** Footer Menu Area End ****** -->
+    <br><br><br><br><br><br><br>
 
     <!-- Jquery-2.2.4 js -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
@@ -64,7 +266,14 @@
     <script src="js/active.js"></script>
 
     <script>
-        $("a.dropdown-item:nth-child(1)").css("color", "#fc6c3f");
+        $(".create-post").css("color", "#fc6c3f");
+
+        $(document).ready(function(){
+            $('.flip').click(function(){
+                $('.cont-flip').toggleClass('flipped');
+                return false;
+            });
+        });
     </script>
 </body>
 </html>

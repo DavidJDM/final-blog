@@ -248,14 +248,48 @@ $f3->route('GET|POST /view-post-@postid', function($f3, $params) {
     echo $template->render('views/post_view.html');
 });
 
-// Route to sign in page
+// Route to create-post page
 $f3->route('GET|POST /create-post', function($f3) {
     $f3->set('title', 'Create Post');
+    $db = new Database();
+
+
+    if(isset($_POST['create-post'])) {
+        $db->connect();
+        $db->createPost($_POST['title'], $_POST['body'], $_POST['author'], $_POST['image'], $_POST['category']);
+    }
 
     $template = new Template();
     echo $template->render('views/create-post.html');
 >>>>>>> 1267d503dfc72636e601370b1ce58dd807f069a8
 });
+
+// Route to view-members page
+$f3->route('GET|POST /view-members', function($f3) {
+    $f3->set('title', 'Members');
+
+    $db = new Database();
+    $db->connect();
+    $members = $db->getMembers();
+    $f3->set('members', $members);
+
+    $template = new Template();
+    echo $template->render('views/view-members.html');
+});
+
+// Route to view-posts page
+$f3->route('GET|POST /view-posts', function($f3) {
+    $f3->set('title', 'Posts');
+
+    $db = new Database();
+    $db->connect();
+    $posts = $db->getPosts();
+    $f3->set('posts', $posts);
+
+    $template = new Template();
+    echo $template->render('views/view-posts.html');
+});
+
 
 //route to sign in page after signing out
 $f3->route('GET|POST /sign-out', function($f3) {
