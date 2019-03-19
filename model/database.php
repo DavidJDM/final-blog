@@ -339,6 +339,68 @@ class Database
         return $results;
     }
 
+    public function getMembers()
+    {
+        global $dbh;
+
+        $sql = "SELECT * FROM users";
+
+        $statement = $dbh->prepare($sql);
+
+        $statement->execute();
+        $arr = $statement->errorInfo();
+        if(isset($arr[2])) {
+            print_r($arr[2]);
+        }
+
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $results;
+    }
+
+    public function getPosts()
+    {
+        global $dbh;
+
+        $sql = "SELECT * FROM posts";
+
+        $statement = $dbh->prepare($sql);
+
+        $statement->execute();
+        $arr = $statement->errorInfo();
+        if(isset($arr[2])) {
+            print_r($arr[2]);
+        }
+
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $results;
+    }
+
+    public function createPost($title, $body, $author, $image, $category_id)
+    {
+        global $dbh;
+
+        $sql = "INSERT INTO `posts`(`category_id`, `title`, `body`, `image`, `author`, `num_likes`, `num_comments`, `date`) VALUES (:category, :title, :body, :image, :author, 0, 0, now())";
+
+        $statement = $dbh->prepare($sql);
+
+        //bind all the parameters
+        $statement->bindValue(':category', $category_id, PDO::PARAM_STR);
+        $statement->bindValue(':title', $title, PDO::PARAM_STR);
+        $statement->bindValue(':body', $body, PDO::PARAM_STR);
+        $statement->bindValue(':author', $author, PDO::PARAM_STR);
+        $statement->bindValue(':image', $image, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $arr = $statement->errorInfo();
+
+        if(isset($arr[2])) {
+            print_r($arr[2]);
+        }
+    }
+
     public function formatDate($date)
     {
         $month = date('M', strtotime($date));
