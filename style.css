@@ -1546,7 +1546,6 @@ div.post-content {
 
 }
 
-<<<<<<< HEAD
 .liked {
     color: #e30000 !important;
     -webkit-text-stroke: 1px #e30000 !important;
@@ -1555,7 +1554,8 @@ div.post-content {
 .notliked {
     color: white;
     -webkit-text-stroke: 1px #b5aec4;
-=======
+}
+
 .fas.fa-bars {
     font-size: 17px;
 }
