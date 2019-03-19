@@ -1,41 +1,47 @@
 $("i.fas.fa-heart").click(function(){
-    let id = $(this).next('span').attr('id');
-    id = id.match(/\d+/);
-    id = parseInt(id, 10);
+    let postID = $(this).next('span').attr('id');
+    postID = postID.match(/\d+/);
+    postID = parseInt(postID, 10);
+    let form = $(this);
+    // let loggedIn = false;
     $.post(
         'checkLikedStatus',
-        {post_id : id},
+        {post_id : postID},
         function(result) {
             if(parseInt(result) === 1) {
+                $.ajax({
+                    success : function() {
 
-                if($(this).hasClass("notliked"))
-                {
-                    var heartNum = $(this).parent().text();
-                    heartNum = parseInt(heartNum) + 1;
+                        if(form.hasClass('notliked'))
+                        {
+                            let heartNum = form.parent().text();
+                            heartNum = parseInt(heartNum) + 1;
 
-                    $(this).next("span").text(heartNum);
-                    alert(heartNum);
+                            form.next("span").text(heartNum);
 
-                    $(this).css("color", "#e30000");
-                    $(this).css("-webkit-text-stroke", "1px #e30000");
+                            form.css("color", "#e30000");
+                            form.css("-webkit-text-stroke", "1px #e30000");
 
-                    $(this).removeClass("notliked");
-                    $(this).addClass("liked");
-                }
+                            form.removeClass("notliked");
+                            form.addClass("liked");
+                        }
 
-                else if($(this).hasClass("liked"))
-                {
-                    var heartNum = $(this).parent().text();
-                    heartNum = parseInt(heartNum) - 1;
+                        else if(form.hasClass('liked'))
+                        {
+                            let heartNum = form.parent().text();
+                            heartNum = parseInt(heartNum) - 1;
 
-                    $(this).next("span").text(heartNum);
+                            form.next("span").text(heartNum);
 
-                    $(this).css("color", "white");
-                    $(this).css("-webkit-text-stroke", "1px #b5aec4");
+                            form.css("color", "white");
+                            form.css("-webkit-text-stroke", "1px #b5aec4");
 
-                    $(this).removeClass("liked");
-                    $(this).addClass("notliked");
-                }
+                            form.removeClass("liked");
+                            form.addClass("notliked");
+                        }
+
+                    }
+                });
             }
             else {
                 let answer = confirm("You are not logged in. Would you like to log in?");
@@ -46,4 +52,8 @@ $("i.fas.fa-heart").click(function(){
             }
         }
     );
+    // alert(loggedIn);
+    // if(loggedIn === true) {
+
+    // }
 });

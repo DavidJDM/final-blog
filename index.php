@@ -68,6 +68,15 @@ $f3->route('GET|POST /events', function($f3) {
     $db = new Database();
     $db->connect();
     $results = $db->getPostInfo(2);
+    if(!empty($_SESSION['user'])) {
+        $userLikes = $db->getPostsLiked($_SESSION['user']->getId());
+
+        $likes = array();
+        foreach($userLikes as $like) {
+            $likes[] = $like['post_id'];
+        }
+        $f3->set('likes', $likes);
+    }
     $f3->set('results', $results);
 
     $template = new Template();
@@ -86,10 +95,19 @@ $f3->route('GET|POST /contact', function($f3) {
 $f3->route('GET|POST /life-style', function($f3) {
     $f3->set('title', 'Life Style');
 
-    //connect to database and get 12 most recent list-style posts
+    //connect to database and get 12 most recent life-style posts
     $db = new Database();
     $db->connect();
     $results = $db->getPostInfo(3);
+    if(!empty($_SESSION['user'])) {
+        $userLikes = $db->getPostsLiked($_SESSION['user']->getId());
+
+        $likes = array();
+        foreach($userLikes as $like) {
+            $likes[] = $like['post_id'];
+        }
+        $f3->set('likes', $likes);
+    }
     $f3->set('results', $results);
 
     $template = new Template();

@@ -1,0 +1,68 @@
+<!-- Loop for posts from database -->
+<repeat group="{{ @results }}" value="{{ @result }}" counter="{{ @i }}">
+    <div class="col-12 col-md-6 col-lg-4" id="postID_{{ @result['post_id'] }}">
+        <div class="single-post wow fadeInUp" data-wow-delay="{{ @i/10 }}s">
+            <!-- Post Thumb -->
+            <div class="post-thumb">
+                <a href="view-post-{{@result['post_id']}}">
+                    <img src="{{ @result['image'] }}" alt="">
+                </a>
+            </div>
+            <check if="{{ !empty(@_SESSION['user']}}) && {{ @_SESSION['user']->getAdminView() }} == 1">
+                <true>
+                    <input type="button" name="edit-post" value="Edit" />
+                </true>
+            </check>
+            <!-- Post Content -->
+            <div class="post-content">
+                <div class="post-meta d-flex">
+                    <div class="post-author-date-area d-flex">
+                        <!-- Post Author -->
+                        <div class="post-author">
+                            <a href="#">By {{ @result['author'] }}</a>
+                        </div>
+                        <!-- Post Date -->
+                        <div class="post-date">
+                            <a href="#">{{ @result['date'] }}</a>
+                        </div>
+                    </div>
+                    <!-- Post Comment & Share Area -->
+                    <div class="post-comment-share-area d-flex">
+                        <!-- Post Favourite -->
+                        <div class="post-favourite" id="update">
+                            <a href="#"><i
+                                <check if="!empty(@_SESSION['user'])">
+                                    <true>
+                                        <check if="{{ in_array(@result['post_id'], @likes) }}">
+                                            <true>
+                                                class="fas fa-heart liked"
+                                            </true>
+                                            <false>
+                                                class="fas fa-heart notliked"
+                                            </false>
+                                        </check>
+                                    </true>
+                                    <false>
+                                        class="fas fa-heart notliked"
+                                    </false>
+                                </check>
+                                >
+                                </i> <span id="post-{{ @result['post_id'] }}-numOfLikes">{{ @result['num_likes'] }}</span></a>
+                        </div>
+                        <!-- Post Comments -->
+                        <div class="post-comments">
+                            <a href="#"><i class="fas fa-comment"></i> {{ @result['num_comments'] }}</a>
+                        </div>
+                        <!-- Post Share -->
+                        <div class="post-share">
+                            <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <a href="view-post-{{@result['post_id']}}">
+                    <h4 class="post-headline">{{ @result['title'] }}</h4>
+                </a>
+            </div>
+        </div>
+    </div>
+</repeat>

@@ -26,9 +26,9 @@
 
 <body>
 <!-- Preloader Start -->
-<div id="preloader">
-    <div class="yummy-load"></div>
-</div>
+<!--<div id="preloader">-->
+    <!--<div class="yummy-load"></div>-->
+<!--</div>-->
 
 <!--Top Header-->
 <include href="include/top-header.html" />
@@ -69,52 +69,8 @@
     <div class="container">
         <div class="row">
 
-            <!-- Loop for posts from database -->
-            <repeat group="{{ @results }}" value="{{ @result}}" counter="{{ @i }}">
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-post wow fadeInUp" data-wow-delay="{{ @i/10 }}s">
-                        <!-- Post Thumb -->
-                        <div class="post-thumb">
-                            <a href="view-post-{{@result['post_id']}}">
-                                <img src="{{ @result['image'] }}" alt="">
-                            </a>
-                        </div>
-                        <!-- Post Content -->
-                        <div class="post-content">
-                            <div class="post-meta d-flex">
-                                <div class="post-author-date-area d-flex">
-                                    <!-- Post Author -->
-                                    <div class="post-author">
-                                        <a href="#">By {{ @result['author'] }}</a>
-                                    </div>
-                                    <!-- Post Date -->
-                                    <div class="post-date">
-                                        <a href="#">{{ @result['date'] }}</a>
-                                    </div>
-                                </div>
-                                <!-- Post Comment & Share Area -->
-                                <div class="post-comment-share-area d-flex">
-                                    <!-- Post Favourite -->
-                                    <div class="post-favourite">
-                                        <a href="#"><i class="fas fa-heart"></i> {{ @result['num_likes'] }}</a>
-                                    </div>
-                                    <!-- Post Comments -->
-                                    <div class="post-comments">
-                                        <a href="#"><i class="fas fa-comment"></i> {{ @result['num_comments'] }}</a>
-                                    </div>
-                                    <!-- Post Share -->
-                                    <div class="post-share">
-                                        <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="view-post-{{@result['post_id']}}">
-                                <h4 class="post-headline">{{ @result['title'] }}</h4>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </repeat>
+            <!-- Loop for posts -->
+            <include href="include/post-loop.html" />
 
             <!-- pages for extra posts
 
@@ -291,39 +247,10 @@
 <script src="js/others/plugins.js"></script>
 <!-- Active JS -->
 <script src="js/active.js"></script>
+<!-- Like button -->
+<script src="js/likeButton.js"></script>
 
 <script>
     $(".navbar-nav li:nth-child(4)").addClass("active");
-
-    $("i.fas.fa-heart").click(function(){
-
-        if($(this).hasClass("notliked"))
-        {
-            var heartNum = $(this).parent().text();
-            heartNum = parseInt(heartNum) + 1;
-
-            $(this).next("span").text(heartNum);
-
-            $(this).css("color", "#e30000");
-            $(this).css("-webkit-text-stroke", "1px #e30000");
-
-            $(this).removeClass("notliked");
-            $(this).addClass("liked");
-        }
-
-        else if($(this).hasClass("liked"))
-        {
-            var heartNum = $(this).parent().text();
-            heartNum = parseInt(heartNum) - 1;
-
-            $(this).next("span").text(heartNum);
-
-            $(this).css("color", "white");
-            $(this).css("-webkit-text-stroke", "1px #b5aec4");
-
-            $(this).removeClass("liked");
-            $(this).addClass("notliked");
-        }
-    });
 </script>
 </body>
