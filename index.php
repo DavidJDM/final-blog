@@ -23,7 +23,7 @@ include('model/register-validation.php');
 
 // Default Route
 $f3->route('GET /', function($f3) {
-    $f3->set('title', 'Milana\'s Blog | Home');
+    $f3->set('title', 'Home');
 
     $template = new Template();
     echo $template->render('views/home.html');
@@ -31,7 +31,7 @@ $f3->route('GET /', function($f3) {
 
 // Route to home page
 $f3->route('GET|POST /home', function($f3) {
-    $f3->set('title', 'Milana\'s Blog | Home');
+    $f3->set('title', 'Home');
 
     $template = new Template();
     echo $template->render('views/home.html');
@@ -39,7 +39,7 @@ $f3->route('GET|POST /home', function($f3) {
 
 // Route to travel page
 $f3->route('GET /travel', function($f3) {
-    $f3->set('title', 'Milana\'s Blog | Travel');
+    $f3->set('title', 'Travel');
 
     //connect to database and get 12 most recent travel posts
     $db = new Database();
@@ -53,7 +53,7 @@ $f3->route('GET /travel', function($f3) {
 
 // Route to events page
 $f3->route('GET|POST /events', function($f3) {
-    $f3->set('title', 'Milana\'s Blog | Events');
+    $f3->set('title', 'Events');
 
     //connect to database and get 12 most recent events posts
     $db = new Database();
@@ -67,7 +67,7 @@ $f3->route('GET|POST /events', function($f3) {
 
 // Route to events page
 $f3->route('GET|POST /contact', function($f3) {
-    $f3->set('title', 'Yummy Blog - Food Blog Template');
+    $f3->set('title', 'Contact');
 
     $template = new Template();
     echo $template->render('views/contact.html');
@@ -75,7 +75,7 @@ $f3->route('GET|POST /contact', function($f3) {
 
 // Route to events page
 $f3->route('GET|POST /life-style', function($f3) {
-    $f3->set('title', 'Milana\'s Blog | Life-Style');
+    $f3->set('title', 'Life Style');
 
     //connect to database and get 12 most recent list-style posts
     $db = new Database();
@@ -89,7 +89,7 @@ $f3->route('GET|POST /life-style', function($f3) {
 
 // Route to register page
 $f3->route('GET|POST /register', function($f3) {
-    $f3->set('title', 'Yummy Blog - Food Blog Template');
+    $f3->set('title', 'Register');
 
     if(isset($_POST['signup'])) {
         //get POST information
@@ -126,7 +126,7 @@ $f3->route('GET|POST /register', function($f3) {
 $f3->route('GET|POST /sign-in', function($f3) {
     $f3->set('emailExists', true);
     $f3->set('invalidPassword', false);
-    $f3->set('title', 'Milana\'s Blog | Sign-in');
+    $f3->set('title', 'Sign-in');
 
     if(isset($_POST['signin'])) {
         //get POST information
@@ -172,13 +172,13 @@ $f3->route('GET|POST /view-post-@postid', function($f3, $params) {
     preg_match_all('!\d+!', $params[0], $postid);
     $postid = $postid[0][0];
     $f3->set('postid', $postid);
-    $f3->set('title', 'Milana\'s Blog | Blog Post');
 
     $db = new Database();
     $db->connect();
     $post = $db->getSinglePost($postid);
     $f3->set('post', $post[0]);
     $f3->set('body', htmlspecialchars_decode($post[0]['body']));
+    $f3->set('title', $post[0]['title']);
 
     $post_date = $post[0]['date'];
 
@@ -227,7 +227,7 @@ $f3->route('GET|POST /create-post', function($f3) {
 
 // Route to view-members page
 $f3->route('GET|POST /view-members', function($f3) {
-    $f3->set('title', 'Members');
+    $f3->set('title', 'View Members');
 
     $db = new Database();
     $db->connect();
@@ -240,7 +240,7 @@ $f3->route('GET|POST /view-members', function($f3) {
 
 // Route to view-posts page
 $f3->route('GET|POST /view-posts', function($f3) {
-    $f3->set('title', 'Posts');
+    $f3->set('title', 'View Posts');
 
     $db = new Database();
     $db->connect();
