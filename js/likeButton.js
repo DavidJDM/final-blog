@@ -6,13 +6,18 @@ $("i.fas.fa-heart").click(function(){
         'checkLikedStatus',
         {post_id : id},
         function(result) {
-            if(result) {
+            if(parseInt(result) === 1) {
+
                 if($(this).hasClass("notliked"))
                 {
                     var heartNum = $(this).parent().text();
                     heartNum = parseInt(heartNum) + 1;
 
                     $(this).next("span").text(heartNum);
+                    alert(heartNum);
+
+                    $(this).css("color", "#e30000");
+                    $(this).css("-webkit-text-stroke", "1px #e30000");
 
                     $(this).removeClass("notliked");
                     $(this).addClass("liked");
@@ -24,6 +29,9 @@ $("i.fas.fa-heart").click(function(){
                     heartNum = parseInt(heartNum) - 1;
 
                     $(this).next("span").text(heartNum);
+
+                    $(this).css("color", "white");
+                    $(this).css("-webkit-text-stroke", "1px #b5aec4");
 
                     $(this).removeClass("liked");
                     $(this).addClass("notliked");

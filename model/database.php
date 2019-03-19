@@ -269,7 +269,7 @@ class Database
 
         else {
             $sql = "DELETE FROM posts_liked
-                    VALUES(:user_id, :post_id)";
+                    WHERE user_id = :user_id AND post_id = :post_id";
 
             $statement = $dbh->prepare($sql);
 
