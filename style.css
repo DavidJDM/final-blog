@@ -365,7 +365,7 @@ li {
     color: #222;
 }
 
-.top_header_area .signup-search-area .login a {
+.top_header_area .signup-search-area .login {
     margin-right: 13px;
     border-right: 2px solid #c2c2c2;
     padding-right: 13px;
@@ -452,6 +452,7 @@ li {
 
 .milana-sub-logo {
     margin-top: -20px;
+    padding-bottom: 35px;
 }
 
 .milana-sub-logo a {
@@ -1530,18 +1531,22 @@ i.fas.fa-comment {
 i.fas.fa-user-circle {
     color: black;
     font-size: 14px;
+    visibility: hidden;
 }
 
 a#navbarDropdown {
-    font-weight: 200;
     font-size: 14px;
     padding-left: 5px !important;
+    font-family: 'Cantarell', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
 }
 
 div.post-content {
 
 }
 
+<<<<<<< HEAD
 .liked {
     color: #e30000 !important;
     -webkit-text-stroke: 1px #e30000 !important;
@@ -1550,6 +1555,20 @@ div.post-content {
 .notliked {
     color: white;
     -webkit-text-stroke: 1px #b5aec4;
+=======
+.fas.fa-bars {
+    font-size: 17px;
+}
+
+#menu-text {
+    font-family: 'Poppins';
+    font-weight: 300;
+    margin: auto;
+}
+
+header.header_area {
+    border-bottom: 1px solid #ebebeb;
+>>>>>>> 1267d503dfc72636e601370b1ce58dd807f069a8
 }
 
 input:-webkit-autofill,
@@ -1563,3 +1582,14 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
     background: #fff !important;
     -webkit-text-fill-color: black !important; }
+
+
+@media only screen and (max-width: 991px) {
+    .dropdown-toggle::after {
+        display: none;
+    }
+
+    .top_header_area.container {
+        max-width: 100%;
+    }
+}

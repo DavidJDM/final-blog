@@ -38,13 +38,18 @@ $f3->route('GET|POST /home', function($f3) {
 });
 
 // Route to travel page
+<<<<<<< HEAD
 $f3->route('GET|POST /travel', function($f3) {
+=======
+$f3->route('GET /travel', function($f3) {
+>>>>>>> 1267d503dfc72636e601370b1ce58dd807f069a8
     $f3->set('title', 'Milana\'s Blog | Travel');
 
     //connect to database and get 12 most recent travel posts
     $db = new Database();
     $db->connect();
     $results = $db->getPostInfo(1);
+<<<<<<< HEAD
     if(!empty($_SESSION['user'])) {
         $userLikes = $db->getPostsLiked($_SESSION['user']->getId());
         foreach($userLikes as $userLike) {
@@ -53,6 +58,8 @@ $f3->route('GET|POST /travel', function($f3) {
     }
 
     $f3->set('likes', $likes);
+=======
+>>>>>>> 1267d503dfc72636e601370b1ce58dd807f069a8
     $f3->set('results', $results);
 
     $template = new Template();
@@ -175,6 +182,7 @@ $f3->route('GET|POST /sign-in', function($f3) {
     echo $template->render('views/sign-in.html');
 });
 
+<<<<<<< HEAD
 // Route to admin page
 $f3->route('GET|POST /admin', function($f3) {
     $f3->set('title', 'Milana\'s Blog | Admin');
@@ -196,6 +204,57 @@ $f3->route('GET|POST /admin', function($f3) {
 
     $template = new Template();
     echo $template->render('views/admin.html');
+=======
+// Route to sign in page
+$f3->route('GET|POST /view-post-@postid', function($f3, $params) {
+    preg_match_all('!\d+!', $params[0], $postid);
+    $postid = $postid[0][0];
+    $f3->set('postid', $postid);
+    $f3->set('title', 'Milana\'s Blog | Blog Post');
+
+    $db = new Database();
+    $db->connect();
+    $post = $db->getSinglePost($postid);
+    $f3->set('post', $post[0]);
+    $f3->set('body', htmlspecialchars_decode($post[0]['body']));
+
+    $post_date = $post[0]['date'];
+
+    $month = date('M', strtotime($post_date));
+    $day = date('t', strtotime($post_date));
+    $year = date('Y', strtotime($post_date));
+
+    $f3->set('month', $month);
+    $f3->set('day', $day);
+    $f3->set('year', $year);
+
+
+    $popularPosts = $db->getPopularPosts();
+    $f3->set('popular1', $popularPosts[0]);
+    $f3->set('popular1date', $db->formatDate($popularPosts[0]['date']));
+    $f3->set('popular2', $popularPosts[1]);
+    $f3->set('popular2date', $db->formatDate($popularPosts[1]['date']));
+    $f3->set('popular3', $popularPosts[2]);
+    $f3->set('popular3date', $db->formatDate($popularPosts[2]['date']));
+    $f3->set('popular4', $popularPosts[3]);
+    $f3->set('popular4date', $db->formatDate($popularPosts[3]['date']));
+    $f3->set('popular5', $popularPosts[4]);
+    $f3->set('popular5date', $db->formatDate($popularPosts[4]['date']));
+
+
+
+
+    $template = new Template();
+    echo $template->render('views/post_view.html');
+});
+
+// Route to sign in page
+$f3->route('GET|POST /create-post', function($f3) {
+    $f3->set('title', 'Create Post');
+
+    $template = new Template();
+    echo $template->render('views/create-post.html');
+>>>>>>> 1267d503dfc72636e601370b1ce58dd807f069a8
 });
 
 //route to sign in page after signing out
@@ -212,6 +271,7 @@ $f3->route('GET|POST /checkLikedStatus', function($f3) {
     }
     else {
         include('jquery/likeButton.php');
+<<<<<<< HEAD
         echo true;
     }
 
@@ -227,6 +287,10 @@ $f3->route('GET|POST /view-admin', function($f3) {
     }
 
     $f3->reroute('home');
+=======
+    }
+
+>>>>>>> 1267d503dfc72636e601370b1ce58dd807f069a8
 });
 
 $f3->run();
