@@ -178,8 +178,30 @@ $f3->route('GET|POST /view-post-@postid', function($f3, $params) {
     $db->connect();
     $post = $db->getSinglePost($postid);
     $f3->set('post', $post[0]);
+    $f3->set('body', htmlspecialchars_decode($post[0]['body']));
+
+    $post_date = $post[0]['date'];
+
+    $month = date('M', strtotime($post_date));
+    $day = date('t', strtotime($post_date));
+    $year = date('Y', strtotime($post_date));
+
+    $f3->set('month', $month);
+    $f3->set('day', $day);
+    $f3->set('year', $year);
 
 
+    $popularPosts = $db->getPopularPosts();
+    $f3->set('popular1', $popularPosts[0]);
+    $f3->set('popular1date', $db->formatDate($popularPosts[0]['date']));
+    $f3->set('popular2', $popularPosts[1]);
+    $f3->set('popular2date', $db->formatDate($popularPosts[1]['date']));
+    $f3->set('popular3', $popularPosts[2]);
+    $f3->set('popular3date', $db->formatDate($popularPosts[2]['date']));
+    $f3->set('popular4', $popularPosts[3]);
+    $f3->set('popular4date', $db->formatDate($popularPosts[3]['date']));
+    $f3->set('popular5', $popularPosts[4]);
+    $f3->set('popular5date', $db->formatDate($popularPosts[4]['date']));
 
 
 
@@ -192,34 +214,8 @@ $f3->route('GET|POST /view-post-@postid', function($f3, $params) {
 $f3->route('GET|POST /create-post', function($f3) {
     $f3->set('title', 'Create Post');
 
-
-
-
     $template = new Template();
     echo $template->render('views/create-post.html');
-});
-
-// Route to admin page
-$f3->route('GET|POST /admin', function($f3) {
-    $f3->set('title', 'Milana\'s Blog | Admin');
-
-    if(isset($_POST['signin'])) {
-        //get POST information
-        $email = $_POST['your_email'];
-        $pass = $_POST['your_pass'];
-
-        $db = new Database();
-        $db->connect();
-        $user = $db->checkSignin($email, $pass);
-
-        if($user !== false) {
-            $_SESSION['user'] = $user;
-            $f3->reroute('home');
-        }
-    }
-
-    $template = new Template();
-    echo $template->render('views/admin.html');
 });
 
 //route to sign in page after signing out

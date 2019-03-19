@@ -2,63 +2,119 @@
 <div class="top_header_area">
     <div class="container">
         <div class="row">
-            <div class="col-5 col-sm-6">
-                <!--  Top Social bar start -->
-                <div class="top_social_bar">
-                    <a href="https://www.instagram.com/milan.kov/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/milana.kovalevich" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.youtube.com/channel/UC2ZQmWwe6vT4ete4ht9oNZA" target="_blank"><i class="fab fa-youtube"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-pinterest"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="mailto:milanaletters@gmail.com" target="_top"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.instagram.com/milanaletters/?hl=en" target="_blank"><i class="fas fa-pen-fancy"></i></a>
-                </div>
-            </div>
-            <!--  Login Register Area -->
-            <div class="col-2 col-sm-2">
-                <div class="signup-search-area d-flex align-items-center justify-content-end">
-                    <check if="!empty({{ @_SESSION['user'] }})">
-
-                    </check>
-                </div>
-            </div>
             <check if="!empty({{ @_SESSION['user'] }})">
-                <true>
-                    <div class="col-5 col-sm-4 signup-search-area align-items-center login_register_area d-flex">
-                        <div class="search_button">
-                            <i class="fas fa-user-circle"></i>
+                <true> <!-- If user logged in -->
+                    <div class="col-9 col-lg-9 col-xl-9 p-0 pl-3">
+                        <!--  Top Social bar start -->
+                        <div class="top_social_bar">
+                            <a href="https://www.instagram.com/milan.kov/" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/milana.kovalevich" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.youtube.com/channel/UC2ZQmWwe6vT4ete4ht9oNZA" target="_blank"><i class="fab fa-youtube"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-pinterest"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="mailto:milanaletters@gmail.com" target="_top"><i class="fas fa-envelope"></i></a>
+                            <a href="https://www.instagram.com/milanaletters/?hl=en" target="_blank"><i class="fas fa-pen-fancy"></i></a>
                         </div>
+                    </div>
+
+                    <div class="col-1 col-lg-3 signup-search-area align-items-center login_register_area d-flex">
+
+                        <!--<div class="search_button">-->
+                            <!--<i class="fas fa-user-circle"></i>-->
+                        <!--</div>-->
+                        <section class="col-11 col-lg-4"></section>
                         <!-- Search Button Area -->
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown col-1 col-lg-8">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ @_SESSION['user']->getName() }}
+                                <i class="fas fa-bars d-lg-none p-0"></i>
+                                <div class="d-none d-lg-inline-block">{{ @_SESSION['user']->getName() }}</div>
                             </a>
+
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <check if="{{ @_SESSION['user']->getAdmin() }} == 1">
-                                    <true>
-                                        <a class="dropdown-item" href="#">Create Post</a>
-                                        <a class="dropdown-item" href="#">View Members</a>
-                                        <a class="dropdown-item" href="#">View Posts</a>
-                                        <a class="dropdown-item" href="view-admin">View As Admin</a>
+                                    <true> <!-- If user ADMIN -->
+                                        <a class="dropdown-item d-block d-lg-none" href="home">{{ @_SESSION['user']->getName() }}</a>
+                                        <div class="dropdown-divider d-lg-none"></div>
+                                        <a class="dropdown-item d-block d-lg-none" href="home">HOME</a>
+                                        <a class="dropdown-item d-block d-lg-none" href="travel">TRAVEL</a>
+                                        <a class="dropdown-item d-block d-lg-none" href="events">EVENTS</a>
+                                        <a class="dropdown-item d-block d-lg-none" href="life-style">LIFE STYLE</a>
+                                        <a class="dropdown-item d-block d-lg-none" href="about">ABOUT</a>
+                                        <a class="dropdown-item d-block d-lg-none" href="contact">CONTACT</a>
+
+                                        <a class="dropdown-item d-none d-lg-block" href="create-post">Create Post</a>
+                                        <a class="dropdown-item d-none d-lg-block" href="view-members">View Members</a>
+                                        <a class="dropdown-item d-none d-lg-block" href="view-posts">View Posts</a>
                                         <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item d-block d-lg-none" href="create-post">Create Post</a>
+                                        <a class="dropdown-item d-block d-lg-none" href="view-members">View Members</a>
+                                        <a class="dropdown-item d-block d-lg-none" href="view-posts">View Posts</a>
+                                        <div class="dropdown-divider d-lg-none"></div>
                                         <a class="dropdown-item" href="sign-out">Sign Out</a>
                                     </true>
-                                    <false>
-                                        <a class="dropdown-item" href="sign-out">Sign Out</a>
+                                    <false> <!-- If user NOT ADMIN -->
+                                        <a class="dropdown-item d-block d-lg-none" href="home">{{ @_SESSION['user']->getName() }}</a>
+                                        <div class="dropdown-divider d-lg-none"></div>
+                                        <a class="dropdown-item d-block d-lg-none" href="home">HOME</a>
+                                        <a class="dropdown-item d-block d-lg-none" href="travel">TRAVEL</a>
+                                        <a class="dropdown-item d-block d-lg-none" href="events">EVENTS</a>
+                                        <a class="dropdown-item d-block d-lg-none" href="life-style">LIFE STYLE</a>
+                                        <a class="dropdown-item d-block d-lg-none" href="about">ABOUT</a>
+                                        <a class="dropdown-item d-block d-lg-none" href="contact">CONTACT</a>
+                                        <a class="dropdown-item d-none d-lg-block" href="sign-out">Sign Out</a>
+                                        <div class="dropdown-divider d-lg-none"></div>
+                                        <a class="dropdown-item d-block d-lg-none" href="sign-out">Sign Out</a>
                                     </false>
                                 </check>
                             </div>
                         </li>
                     </div>
+
+                    <!--<div class="col-1 dropdown-toggle d-lg-none m-auto p-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                        <!--<i class="fas fa-bars dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>-->
+                    <!--</div>-->
                 </true>
-                <false>
-                    <div class="col-2 col-sm-2 signup-search-area align-items-center login_register_area d-flex">
-                        <div class="login">
-                            <a href="sign-in">Sign in</a>
+
+                <false> <!-- If user NOT logged in -->
+                    <div class="col-9 col-lg-9 col-xl-9 p-0 pl-3">
+                        <!--  Top Social bar start -->
+                        <div class="top_social_bar">
+                            <a href="https://www.instagram.com/milan.kov/" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/milana.kovalevich" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.youtube.com/channel/UC2ZQmWwe6vT4ete4ht9oNZA" target="_blank"><i class="fab fa-youtube"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-pinterest"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="mailto:milanaletters@gmail.com" target="_top"><i class="fas fa-envelope"></i></a>
+                            <a href="https://www.instagram.com/milanaletters/?hl=en" target="_blank"><i class="fas fa-pen-fancy"></i></a>
                         </div>
-                        <div class="register">
-                            <a href="register">Sign up</a>
-                        </div>
+                    </div>
+
+                    <div class="col-1 col-lg-3 signup-search-area align-items-center login_register_area d-flex">
+
+                        <section class="col-11 col-lg-4"></section>
+
+                        <li class="nav-item dropdown d-block d-lg-none col-12 col-lg-8">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bars m-auto p-0"></i>
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item d-block d-lg-none" href="home">HOME</a>
+                                <a class="dropdown-item d-block d-lg-none" href="travel">TRAVEL</a>
+                                <a class="dropdown-item d-block d-lg-none" href="events">EVENTS</a>
+                                <a class="dropdown-item d-block d-lg-none" href="life-style">LIFE STYLE</a>
+                                <a class="dropdown-item d-block d-lg-none" href="about">ABOUT</a>
+                                <a class="dropdown-item d-block d-lg-none" href="contact">CONTACT</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item d-block d-lg-none login" href="sign-in">Sign In</a>
+                                <a class="dropdown-item d-block d-lg-none register" href="register">Sign Up</a>
+                            </div>
+                        </li>
+
+                        <section class="text-right m-auto d-none d-lg-inline-block">
+                            <a class="login d-none d-lg-inline-block text-right" href="sign-in">Sign in</a>
+                            <a class="register d-none d-lg-inline-block text-right" href="register">Sign up</a>
+                        </section>
                     </div>
                 </false>
             </check>

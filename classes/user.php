@@ -36,7 +36,8 @@ class User implements JsonSerializable
      */
     public function getName()
     {
-        return $this->name;
+        $arr = explode(' ',trim($this->name));
+        return $arr[0];
     }
 
     /**

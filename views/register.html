@@ -9,37 +9,38 @@
     <!-- Font Icon -->
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
 
-
     <!-- Header css -->
     <link rel="stylesheet" href="style.css">
     <!-- Main css -->
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- Responsive CSS -->
+    <link href="css/responsive/responsive.css" rel="stylesheet">
     <!-- Font Awesome Latest -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!--<meta name="google-signin-scope" content="profile email">-->
+    <!--<meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">-->
+    <!--<script src="https://apis.google.com/js/platform.js" async defer></script>-->
 </head>
 <body>
-<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-<script>
-    function onSignIn(googleUser) {
-        // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
+<!--<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>-->
+<!--<script>-->
+    <!--function onSignIn(googleUser) {-->
+        <!--// Useful data for your client-side scripts:-->
+        <!--var profile = googleUser.getBasicProfile();-->
+        <!--console.log("ID: " + profile.getId()); // Don't send this directly to your server!-->
+        <!--console.log('Full Name: ' + profile.getName());-->
+        <!--console.log('Given Name: ' + profile.getGivenName());-->
+        <!--console.log('Family Name: ' + profile.getFamilyName());-->
+        <!--console.log("Image URL: " + profile.getImageUrl());-->
+        <!--console.log("Email: " + profile.getEmail());-->
 
-        // The ID token you need to pass to your backend:
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-    }
-</script>
+        <!--// The ID token you need to pass to your backend:-->
+        <!--var id_token = googleUser.getAuthResponse().id_token;-->
+        <!--console.log("ID Token: " + id_token);-->
+    <!--}-->
+<!--</script>-->
 
     <!--Top Header-->
     <include href="include/top-header.html" />
@@ -99,12 +100,18 @@
         </section>
     </div>
 
-    <!-- JS -->
+    <!-- Jquery-2.2.4 js -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap-4 js -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins JS -->
+    <script src="js/others/plugins.js"></script>
     <script src="js/main.js"></script>
 
     <script>
-        $("div.register a").addClass("active");
+        $(".register").css("color", "#fc6c3f");
     </script>
 
 <check if="{{ @emailTaken }}">

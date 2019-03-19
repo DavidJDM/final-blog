@@ -47,13 +47,25 @@
                         <li class="breadcrumb-item"><a href="home"><i class="fas fa-home"></i> Home</a></li>
                         <li class="breadcrumb-item" aria-current="page">
                             <check if="{{ @post['category_id'] }} == 1">
-                                <true>Travel</true>
+                                <true>
+                                    <a href="travel">
+                                        Travel
+                                    </a>
+                                </true>
                                 <false>
                                     <check if="{{ @post['category_id'] }} == 2">
-                                        <true>Events</true>
+                                        <true>
+                                            <a href="events">
+                                                Events
+                                            </a>
+                                        </true>
                                         <false>
                                             <check if="{{ @post['category_id'] }} == 3">
-                                                <true>Life Style</true>
+                                                <true>
+                                                    <a href="life-style">
+                                                        Life Style
+                                                    </a>
+                                                </true>
                                             </check>
                                         </false>
                                     </check>
@@ -70,7 +82,7 @@
 <!-- ****** Breadcumb Area End ****** -->
 
 <!-- ****** Single Blog Area Start ****** -->
-<section class="single_blog_area section_padding_80">
+<section class="single_blog_area section_padding_80 mt-40">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
@@ -104,7 +116,7 @@
                                         </div>
                                         <!-- Post Date -->
                                         <div class="post-date">
-                                            <a href="#">{{ @post['date'] }}May 19, 2017</a>
+                                            <a href="#">{{ @month }} {{ @day }}, {{ @year }}</a>
                                         </div>
                                     </div>
                                     <!-- Post Comment & Share Area -->
@@ -126,15 +138,13 @@
                                 <a href="#">
                                     <h2 class="post-headline">{{ @post['title'] }}</h2>
                                 </a>
-                                {{ @post['body'] }}
+                                {{ @body }}
+
                             </div>
                         </div>
 
                         <!-- Tags Area -->
                         <div class="tags-area">
-                            <a href="#">Multipurpose</a>
-                            <a href="#">Design</a>
-                            <a href="#">Ideas</a>
                         </div>
 
                         <!-- Related Post Area -->
@@ -370,52 +380,52 @@
                         </div>
                         <!-- Single Popular Post -->
                         <div class="single-populer-post d-flex">
-                            <img src="img/sidebar-img/1.jpg" alt="">
+                            <img src="{{ @popular1['image'] }}" alt="">
                             <div class="post-content">
                                 <a href="#">
-                                    <h6>Top Wineries To Visit In England</h6>
+                                    <h6>{{ @popular1['title'] }}</h6>
                                 </a>
-                                <p>Tuesday, October 3, 2017</p>
+                                <p>{{ @popular1date }}</p>
                             </div>
                         </div>
                         <!-- Single Popular Post -->
                         <div class="single-populer-post d-flex">
-                            <img src="img/sidebar-img/2.jpg" alt="">
+                            <img src="{{ @popular2['image'] }}" alt="">
                             <div class="post-content">
                                 <a href="#">
-                                    <h6>The 8 Best Gastro Pubs In Bath</h6>
+                                    <h6>{{ @popular2['title'] }}</h6>
                                 </a>
-                                <p>Tuesday, October 3, 2017</p>
+                                <p>{{ @popular2date }}</p>
                             </div>
                         </div>
                         <!-- Single Popular Post -->
                         <div class="single-populer-post d-flex">
-                            <img src="img/sidebar-img/3.jpg" alt="">
+                            <img src="{{ @popular3['image'] }}" alt="">
                             <div class="post-content">
                                 <a href="#">
-                                    <h6>Zermatt Unplugged the best festival</h6>
+                                    <h6>{{ @popular3['title'] }}</h6>
                                 </a>
-                                <p>Tuesday, October 3, 2017</p>
+                                <p>{{ @popular3date }}</p>
                             </div>
                         </div>
                         <!-- Single Popular Post -->
                         <div class="single-populer-post d-flex">
-                            <img src="img/sidebar-img/4.jpg" alt="">
+                            <img src="{{ @popular4['image'] }}" alt="">
                             <div class="post-content">
                                 <a href="#">
-                                    <h6>Harrogate's Top 10 Independent Eats</h6>
+                                    <h6>{{ @popular4['title'] }}</h6>
                                 </a>
-                                <p>Tuesday, October 3, 2017</p>
+                                <p>{{ @popular4date }}</p>
                             </div>
                         </div>
                         <!-- Single Popular Post -->
                         <div class="single-populer-post d-flex">
-                            <img src="img/sidebar-img/5.jpg" alt="">
+                            <img src="{{ @popular5['image'] }}" alt="">
                             <div class="post-content">
                                 <a href="#">
-                                    <h6>Eating Out On A Budget In Oxford</h6>
+                                    <h6>{{ @popular1['title'] }}</h6>
                                 </a>
-                                <p>Tuesday, October 3, 2017</p>
+                                <p>{{ @popular5date }}</p>
                             </div>
                         </div>
                     </div>

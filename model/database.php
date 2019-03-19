@@ -319,4 +319,32 @@ class Database
 
         return $results;
     }
+
+    public function getPopularPosts()
+    {
+        global $dbh;
+
+        $sql = "SELECT * FROM posts ORDER BY num_likes DESC LIMIT 5";
+
+        $statement = $dbh->prepare($sql);
+
+        $statement->execute();
+        $arr = $statement->errorInfo();
+        if(isset($arr[2])) {
+            print_r($arr[2]);
+        }
+
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $results;
+    }
+
+    public function formatDate($date)
+    {
+        $month = date('M', strtotime($date));
+        $day = date('t', strtotime($date));
+        $year = date('Y', strtotime($date));
+
+        return $month . " " . $day . ", " . $year;
+    }
 }
