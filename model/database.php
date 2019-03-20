@@ -335,8 +335,22 @@ class Database
         }
 
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $popularPost = array();
 
-        return $results;
+        foreach($results as $result) {
+            $postID = $result['post_id'];
+            $categoryID = $result['category_id'];
+            $title = $result['title'];
+            $body = $result['body'];
+            $author = $result['author'];
+            $numLikes = $result['num_likes'];
+            $numComments = $result['num_comments'];
+            $image = $result['image'];
+            $date = $result['date'];
+            $popularPost[] = new Post($postID, $categoryID, $title, $body, $author, $numLikes,
+                $numComments, $image, $date);
+        }
+        return $popularPost;
     }
 
     public function getMembers()

@@ -47,7 +47,7 @@
                         <li class="breadcrumb-item"><a href="home"><i class="fas fa-home"></i> Home</a></li>
                         <li class="breadcrumb-item" aria-current="page">
                             <check if="{{ @_SESSION['post']->getCategoryID() }} == 1">
-                                <a href="travel">Travel Test</a>
+                                <a href="travel">Travel</a>
                             </check>
                             <check if="{{ @_SESSION['post']->getCategoryID() }} == 2">
                                 <a href="events">Events</a>
@@ -364,58 +364,10 @@
                         <div class="widget-title text-center">
                             <h6>Popular Posts</h6>
                         </div>
-                        <!-- Single Popular Post -->
-                        <div class="single-populer-post d-flex">
-                            <img src="{{ @popular1['image'] }}" alt="">
-                            <div class="post-content">
-                                <a href="#">
-                                    <h6>{{ @popular1['title'] }}</h6>
-                                </a>
-                                <p>{{ @popular1date }}</p>
-                            </div>
-                        </div>
-                        <!-- Single Popular Post -->
-                        <div class="single-populer-post d-flex">
-                            <img src="{{ @popular2['image'] }}" alt="">
-                            <div class="post-content">
-                                <a href="#">
-                                    <h6>{{ @popular2['title'] }}</h6>
-                                </a>
-                                <p>{{ @popular2date }}</p>
-                            </div>
-                        </div>
-                        <!-- Single Popular Post -->
-                        <div class="single-populer-post d-flex">
-                            <img src="{{ @popular3['image'] }}" alt="">
-                            <div class="post-content">
-                                <a href="#">
-                                    <h6>{{ @popular3['title'] }}</h6>
-                                </a>
-                                <p>{{ @popular3date }}</p>
-                            </div>
-                        </div>
-                        <!-- Single Popular Post -->
-                        <div class="single-populer-post d-flex">
-                            <img src="{{ @popular4['image'] }}" alt="">
-                            <div class="post-content">
-                                <a href="#">
-                                    <h6>{{ @popular4['title'] }}</h6>
-                                </a>
-                                <p>{{ @popular4date }}</p>
-                            </div>
-                        </div>
-                        <!-- Single Popular Post -->
-                        <div class="single-populer-post d-flex">
-                            <img src="{{ @popular5['image'] }}" alt="">
-                            <div class="post-content">
-                                <a href="#">
-                                    <h6>{{ @popular1['title'] }}</h6>
-                                </a>
-                                <p>{{ @popular5date }}</p>
-                            </div>
-                        </div>
-                    </div>
 
+                        <!-- Loop for popular posts -->
+                        <include href="include/popular-post-loop.html" />
+                    </div>
                     <!-- Single Widget Area -->
                     <div class="single-widget-area add-widget text-center">
                         <div class="add-widget-area">

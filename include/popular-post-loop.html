@@ -1,0 +1,12 @@
+<!-- Single Popular Post -->
+<repeat group="{{ @_SESSION['popularPosts'] }}" value="{{ @post }}">
+    <div class="single-populer-post d-flex">
+        <img src="{{ @post->getImage() }}" alt="">
+        <div class="post-content">
+            <a href="#">
+                <h6>{{ @post->getTitle() }}</h6>
+            </a>
+            <p>{{ @post->getDate() }}</p>
+        </div>
+    </div>
+</repeat>

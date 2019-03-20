@@ -206,19 +206,7 @@ $f3->route('GET|POST /view-post-@postid', function($f3, $params) {
     $_SESSION['post'] = $post;
 
     $popularPosts = $db->getPopularPosts();
-    $f3->set('popular1', $popularPosts[0]);
-    $f3->set('popular1date', $db->formatDate($popularPosts[0]['date']));
-    $f3->set('popular2', $popularPosts[1]);
-    $f3->set('popular2date', $db->formatDate($popularPosts[1]['date']));
-    $f3->set('popular3', $popularPosts[2]);
-    $f3->set('popular3date', $db->formatDate($popularPosts[2]['date']));
-    $f3->set('popular4', $popularPosts[3]);
-    $f3->set('popular4date', $db->formatDate($popularPosts[3]['date']));
-    $f3->set('popular5', $popularPosts[4]);
-    $f3->set('popular5date', $db->formatDate($popularPosts[4]['date']));
-
-
-
+    $_SESSION['popularPosts'] = $popularPosts;
 
     $template = new Template();
     echo $template->render('views/post_view.html');
