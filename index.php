@@ -203,20 +203,7 @@ $f3->route('GET|POST /view-post-@postid', function($f3, $params) {
     $db = new Database();
     $db->connect();
     $post = $db->getSinglePost($postid);
-    $f3->set('post', $post[0]);
-    $f3->set('body', $post[0]['body']);
-    $f3->set('title', $post[0]['title']);
-
-    $post_date = $post[0]['date'];
-
-    $month = date('M', strtotime($post_date));
-    $day = date('t', strtotime($post_date));
-    $year = date('Y', strtotime($post_date));
-
-    $f3->set('month', $month);
-    $f3->set('day', $day);
-    $f3->set('year', $year);
-
+    $_SESSION['post'] = $post;
 
     $popularPosts = $db->getPopularPosts();
     $f3->set('popular1', $popularPosts[0]);

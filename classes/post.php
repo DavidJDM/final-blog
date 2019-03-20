@@ -17,7 +17,32 @@ class Post
     private $numComments;
     private $image;
     private $date;
-    private $likes;
+
+    /**
+     * Post constructor.
+     * @param $postID
+     * @param $categoryID
+     * @param $title
+     * @param $body
+     * @param $author
+     * @param $numLikes
+     * @param $numComments
+     * @param $image
+     * @param $date
+     */
+    public function __construct($postID, $categoryID, $title, $body, $author, $numLikes, $numComments, $image, $date)
+    {
+        $this->postID = $postID;
+        $this->categoryID = $categoryID;
+        $this->title = $title;
+        $this->body = $body;
+        $this->author = $author;
+        $this->numLikes = $numLikes;
+        $this->numComments = $numComments;
+        $this->image = $image;
+        $this->date = $date;
+    }
+
 
     /**
      * @return mixed
@@ -153,21 +178,5 @@ class Post
     public function setDate($date)
     {
         $this->date = $date;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLikes()
-    {
-        return $this->likes;
-    }
-
-    /**
-     * @param mixed $likes
-     */
-    public function setLikes($likes)
-    {
-        $this->likes = $likes;
     }
 }

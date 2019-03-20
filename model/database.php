@@ -135,17 +135,6 @@ class Database
         }
     }
 
-    public function checkAdminSignin($email, $pass)
-    {
-        global $dbh;
-
-        if(strtolower($email) === "admin" && $pass === "adminmilana2019") {
-
-            return true;
-        }
-        return false;
-    }
-
     public function checkSignin($email, $pass)
     {
         global $dbh;
@@ -315,9 +304,20 @@ class Database
             print_r($arr[2]);
         }
 
-        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        $postID = $result['post_id'];
+        $categoryID = $result['category_id'];
+        $title = $result['title'];
+        $body = $result['body'];
+        $author = $result['author'];
+        $numLikes = $result['num_likes'];
+        $numComments = $result['num_comments'];
+        $image = $result['image'];
+        $date = $result['date'];
 
-        return $results;
+        $post = new Post($postID, $categoryID, $title, $body, $author, $numLikes,
+                            $numComments, $image, $date);
+        return $post;
     }
 
     public function getPopularPosts()

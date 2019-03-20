@@ -46,33 +46,17 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="home"><i class="fas fa-home"></i> Home</a></li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <check if="{{ @post['category_id'] }} == 1">
-                                <true>
-                                    <a href="travel">
-                                        Travel
-                                    </a>
-                                </true>
-                                <false>
-                                    <check if="{{ @post['category_id'] }} == 2">
-                                        <true>
-                                            <a href="events">
-                                                Events
-                                            </a>
-                                        </true>
-                                        <false>
-                                            <check if="{{ @post['category_id'] }} == 3">
-                                                <true>
-                                                    <a href="life-style">
-                                                        Life Style
-                                                    </a>
-                                                </true>
-                                            </check>
-                                        </false>
-                                    </check>
-                                </false>
+                            <check if="{{ @_SESSION['post']->getCategoryID() }} == 1">
+                                <a href="travel">Travel Test</a>
+                            </check>
+                            <check if="{{ @_SESSION['post']->getCategoryID() }} == 2">
+                                <a href="events">Events</a>
+                            </check>
+                            <check if="{{ @_SESSION['post']->getCategoryID() }} == 3">
+                                <a href="life-style">Life Style</a>
                             </check>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ @post['title'] }}</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ @_SESSION['post']->getTitle() }}</li>
                     </ol>
                 </nav>
             </div>
@@ -104,7 +88,7 @@
                         <div class="single-post">
                             <!-- Post Thumb -->
                             <div class="post-thumb">
-                                <img src="{{ @post['image'] }}" alt="">
+                                <img src="{{ @_SESSION['post']->getImage() }}" alt="">
                             </div>
                             <!-- Post Content -->
                             <div class="post-content">
@@ -112,22 +96,22 @@
                                     <div class="post-author-date-area d-flex">
                                         <!-- Post Author -->
                                         <div class="post-author">
-                                            <a href="#">By {{ @post['author'] }}</a>
+                                            <a href="#">By {{ @_SESSION['post']->getAuthor() }}</a>
                                         </div>
                                         <!-- Post Date -->
                                         <div class="post-date">
-                                            <a href="#">{{ @month }} {{ @day }}, {{ @year }}</a>
+                                            <a href="#">{{ @_SESSION['post']->getDate() }}</a>
                                         </div>
                                     </div>
                                     <!-- Post Comment & Share Area -->
                                     <div class="post-comment-share-area d-flex">
                                         <!-- Post Favourite -->
                                         <div class="post-favourite">
-                                            <a href="#"><i class="fas fa-heart"></i> {{ @post['num_likes'] }}</a>
+                                            <a href="#"><i class="fas fa-heart"></i> {{ @_SESSION['post']->getNumLikes() }}</a>
                                         </div>
                                         <!-- Post Comments -->
                                         <div class="post-comments">
-                                            <a href="#"><i class="fas fa-comment"></i> {{ @post['num_comments'] }}</a>
+                                            <a href="#"><i class="fas fa-comment"></i> {{ @_SESSION['post']->getNumComments() }}</a>
                                         </div>
                                         <!-- Post Share -->
                                         <div class="post-share">
@@ -136,10 +120,10 @@
                                     </div>
                                 </div>
                                 <a href="#">
-                                    <h2 class="post-headline">{{ @post['title'] }}</h2>
+                                    <h2 class="post-headline">{{ @_SESSION['post']->getTitle() }}</h2>
                                 </a>
                                 <div>
-                                    {{ @body }}
+                                    {{ @_SESSION['post']->getBody() }}
                                 </div>
 
                             </div>
