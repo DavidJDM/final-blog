@@ -122,6 +122,15 @@ class Database
         return $userLikes;
     }
 
+    public function checkAdminSignin($email, $pass)
+    {
+        global $dbh;
+        if(strtolower($email) === "admin" && $pass === "adminmilana2019") {
+            return true;
+        }
+        return false;
+    }
+
     /**
      * @param $email the email from the user to check the database for availability
      * @return bool returns true if there are no emails matching the email
