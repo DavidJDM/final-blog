@@ -25,6 +25,15 @@ include('model/register-validation.php');
 $f3->route('GET /', function($f3) {
     $f3->set('title', 'Home');
 
+    //connect to database and get 12 most recent events posts
+    $db = new Database();
+    $db->connect();
+    $posts = $db->getHomepagePosts();
+    $popularPosts = $db->getPopularPosts();
+
+    $_SESSION['posts'] = $posts;
+    $_SESSION['popularPosts'] = $popularPosts;
+
     $template = new Template();
     echo $template->render('views/home.html');
 });
@@ -32,6 +41,15 @@ $f3->route('GET /', function($f3) {
 // Route to home page
 $f3->route('GET|POST /home', function($f3) {
     $f3->set('title', 'Home');
+
+    //connect to database and get 12 most recent events posts
+    $db = new Database();
+    $db->connect();
+    $posts = $db->getHomepagePosts();
+    $popularPosts = $db->getPopularPosts();
+
+    $_SESSION['posts'] = $posts;
+    $_SESSION['popularPosts'] = $popularPosts;
 
     $template = new Template();
     echo $template->render('views/home.html');

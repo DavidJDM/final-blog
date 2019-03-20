@@ -32,6 +32,43 @@ class Database
         }
     }
 
+    public function getHomepagePosts()
+    {
+        global $dbh;
+
+        $sql = "SELECT * FROM posts
+                ORDER BY date DESC
+                LIMIT 5";
+
+        $statement = $dbh->prepare($sql);
+
+        $statement->execute();
+        $arr = $statement->errorInfo();
+        if(isset($arr[2])) {
+            print_r($arr[2]);
+        }
+
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        $posts = array();
+
+        foreach($results as $result) {
+            $postID = $result['post_id'];
+            $categoryID = $result['category_id'];
+            $title = $result['title'];
+            $body = $result['body'];
+            $author = $result['author'];
+            $numLikes = $result['num_likes'];
+            $numComments = $result['num_comments'];
+            $image = $result['image'];
+            $date = $result['date'];
+            $posts[] = new Post($postID, $categoryID, $title, $body, $author, $numLikes,
+                $numComments, $image, $date);
+        }
+
+        return $posts;
+    }
+
     /**
      * @param $id param ID used to get information from database (travel => 1, events => 2, life-style => 3)
      * @return array returns a post object array with top 25 posts sorted by date
