@@ -122,7 +122,7 @@
                                 <a href="#">
                                     <h2 class="post-headline">{{ @_SESSION['post']->getTitle() }}</h2>
                                 </a>
-                                <div>
+                                <div id="body">
                                     {{ @_SESSION['post']->getBody() }}
                                 </div>
 
@@ -637,5 +637,13 @@
 <script src="js/others/plugins.js"></script>
 <!-- Active JS -->
 <script src="js/active.js"></script>
+
+<script>
+
+    let body = $("#body").text();
+    document.getElementById("body").innerHTML = body;
+
+
+</script>
 </body>
 
