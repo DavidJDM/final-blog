@@ -1547,6 +1547,7 @@ div.post-content {
 }
 
 .liked {
+
     color: #e30000 !important;
     -webkit-text-stroke: 1px #e30000 !important;
 }
